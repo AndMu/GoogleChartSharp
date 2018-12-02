@@ -34,7 +34,7 @@ namespace Wikiled.Google.Chart.Tests.Acceptance.Api
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             var data = await instance.GetImage(lineChart).ConfigureAwait(false);
             Assert.Greater(data.Length, 5000);
-            await File.WriteAllBytesAsync("image.jpg", data).ConfigureAwait(false);
+            File.WriteAllBytes("image.jpg", data);
         }
 
         private RequestManager CreateManager()
