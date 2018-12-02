@@ -6,7 +6,7 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string TwoDTest()
         {
-            int[] data = new[] { 10, 20, 30, 40 };
+            int[] data = { 10, 20, 30, 40 };
             PieChart pieChart = new PieChart(250, 150);
             pieChart.SetTitle("2D Test");
             pieChart.SetData(data);
@@ -17,7 +17,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string ThreeDTest()
         {
-            int[] data = new[] { 10, 20, 30, 40 };
+            int[] data = { 10, 20, 30, 40 };
             PieChart pieChart = new PieChart(300, 150, PieChartType.ThreeD);
             pieChart.SetTitle("3D Test");
             pieChart.SetData(data);

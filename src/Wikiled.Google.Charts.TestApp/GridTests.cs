@@ -6,7 +6,7 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string StepSizeTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Step Size Test");
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
@@ -20,7 +20,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string AllParamsTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("All Params Test");
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
@@ -34,7 +34,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string SolidGridTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Solid Grid Test");
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));

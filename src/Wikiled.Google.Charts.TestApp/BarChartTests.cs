@@ -7,8 +7,8 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string HorizontalStackedTest()
         {
-            int[] data1 = new[] { 10, 5, 20, 15 };
-            int[] data2 = new[] { 10, 10, 10, 10 };
+            int[] data1 = { 10, 5, 20, 15 };
+            int[] data2 = { 10, 10, 10, 10 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -27,8 +27,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string VerticalStackedTest()
         {
-            int[] data1 = new[] { 10, 5, 20, 15 };
-            int[] data2 = new[] { 10, 10, 10, 10 };
+            int[] data1 = { 10, 5, 20, 15 };
+            int[] data2 = { 10, 10, 10, 10 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -47,8 +47,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string HorizontalGroupedTest()
         {
-            int[] data1 = new[] { 10, 5, 20 };
-            int[] data2 = new[] { 5, 10, 20 };
+            int[] data1 = { 10, 5, 20 };
+            int[] data2 = { 5, 10, 20 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -68,8 +68,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string VerticalGroupedTest()
         {
-            int[] data1 = new[] { 10, 5, 20 };
-            int[] data2 = new[] { 30, 35, 15 };
+            int[] data1 = { 10, 5, 20 };
+            int[] data2 = { 30, 35, 15 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -88,8 +88,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string ZeroLineTest()
         {
-            int[] data1 = new[] { 10, 5, 20 };
-            int[] data2 = new[] { 30, 35, 20 };
+            int[] data1 = { 10, 5, 20 };
+            int[] data2 = { 30, 35, 20 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);

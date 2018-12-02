@@ -7,8 +7,8 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string AllBasicAxesTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -27,8 +27,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string AxesLabelsTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -59,8 +59,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string AxesRangeTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -91,8 +91,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string AxesStyleTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -125,8 +125,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string StackedAxesTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);

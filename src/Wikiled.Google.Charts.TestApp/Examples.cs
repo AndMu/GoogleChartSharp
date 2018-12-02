@@ -6,7 +6,7 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string SuperSimple()
         {
-            int[] data = new[] { 0, 10, 20, 30, 40 };
+            int[] data = { 0, 10, 20, 30, 40 };
             LineChart chart = new LineChart(150, 150);
             chart.SetData(data);
             return chart.GetUrl();
@@ -16,7 +16,7 @@ namespace Wikiled.Google.Charts.TestApp
         {
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
 
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(bottomAxis);
@@ -33,7 +33,7 @@ namespace Wikiled.Google.Charts.TestApp
             bottomAxis.AddLabel(new ChartAxisLabel("c", 50));
             bottomAxis.AddLabel(new ChartAxisLabel("d", 100));
 
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(leftAxis);
@@ -47,7 +47,7 @@ namespace Wikiled.Google.Charts.TestApp
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
             bottomAxis.SetRange(0, 50);
 
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(bottomAxis);
@@ -61,7 +61,7 @@ namespace Wikiled.Google.Charts.TestApp
             ChartAxis bottomAxis2 = new ChartAxis(ChartAxisType.Bottom);
             bottomAxis2.SetRange(0, 50);
 
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(bottomAxis);
@@ -73,9 +73,9 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string Xkcd()
         {
-            float[] data = new float[] {35, 30, 26, 22, 17,  5, 96,  5,  4,  3,  2,  2,  1,  1};
+            float[] data = {35, 30, 26, 22, 17,  5, 96,  5,  4,  3,  2,  2,  1,  1};
 
-            string[] axisLabels = new[] {".00", ".02", ".04", ".06", ".08", ".10",
+            string[] axisLabels = {".00", ".02", ".04", ".06", ".08", ".10",
                                                 ".12", ".14", ".16", ".18", ".20", ".22",
                                                 ".24", ".26"};
 

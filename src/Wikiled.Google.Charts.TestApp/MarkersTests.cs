@@ -6,7 +6,7 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string RangeMarkersTest()
         {
-            float[] fdata = new float[] { 10, 30, 75, 40, 15 };
+            float[] fdata = { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(250, 150);
             chart.SetTitle("Range markers test");
             chart.SetData(fdata);
@@ -22,7 +22,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string ShapeMarkersTest()
         {
-            float[] fdata = new float[] { 10, 30, 75, 40, 15 };
+            float[] fdata = { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(300, 150);
             chart.SetTitle("Shape markers test");
             chart.SetData(fdata);

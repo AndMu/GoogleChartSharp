@@ -7,7 +7,7 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string SolidFillTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Solid fill test");
             lineChart.SetData(line1);
@@ -26,7 +26,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string LinearGradientFillTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Linear Gradient fill test");
             lineChart.SetData(line1);
@@ -48,7 +48,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string LinearStripesTest()
         {
-            float[] fdata = new float[] { 10, 30, 75, 40, 15 };
+            float[] fdata = { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(250, 150);
             chart.SetTitle("Linear Stripes Test");
             chart.SetData(fdata);
@@ -68,7 +68,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string SingleLineAreaFillTest()
         {
-            float[] fdata = new float[] { 10, 30, 75, 40, 15 };
+            float[] fdata = { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(250, 150);
             chart.SetTitle("Area fill test");
             chart.SetData(fdata);
@@ -83,9 +83,9 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string MultiLineAreaFillsTest()
         {
-            float[] line1 = new float[] { 15, 45, 5, 30, 10 };
-            float[] line2 = new float[] { 35, 65, 25, 50, 30 };
-            float[] line3 = new float[] { 55, 85, 45, 70, 50 };
+            float[] line1 = { 15, 45, 5, 30, 10 };
+            float[] line2 = { 35, 65, 25, 50, 30 };
+            float[] line3 = { 55, 85, 45, 70, 50 };
 
             List<float[]> dataset = new List<float[]>();
             dataset.Add(line1);

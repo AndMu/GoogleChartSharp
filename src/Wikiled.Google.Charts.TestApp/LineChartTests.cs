@@ -7,8 +7,8 @@ namespace Wikiled.Google.Charts.TestApp
     {
         public static string SingleDatasetPerLine()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -25,7 +25,7 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string Sparklines()
         {
-            float[] line1 = new float[] { 27, 25, 25, 25, 25, 27, 100, 31, 25, 36, 25, 25, 39, 25, 31, 25, 25, 25, 26, 26, 25, 25, 28, 25, 25, 100, 28, 27, 31, 25, 27, 27, 29, 25, 27, 26, 26, 25, 26, 26, 35, 33, 34, 25, 26, 25, 36, 25, 26, 37, 33, 33, 37, 37, 39, 25, 25, 25, 25 };
+            float[] line1 = { 27, 25, 25, 25, 25, 27, 100, 31, 25, 36, 25, 25, 39, 25, 31, 25, 25, 25, 26, 26, 25, 25, 28, 25, 25, 100, 28, 27, 31, 25, 27, 27, 29, 25, 27, 26, 26, 25, 26, 26, 35, 33, 34, 25, 26, 25, 36, 25, 26, 37, 33, 33, 37, 37, 39, 25, 25, 25, 25 };
 
             List<float[]> dataset = new List<float[]>();
             dataset.Add(line1);
@@ -39,10 +39,10 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string MultiDatasetPerLine()
         {
-            int[] line1X = new[] { 0, 15, 30, 45, 60 };
-            int[] line1Y = new[] { 10, 50, 15, 60, 12};
-            int[] line2X = new[] { 0, 15, 30, 45, 60 };
-            int[] line2Y = new[] { 45, 12, 60, 34, 60 };
+            int[] line1X = { 0, 15, 30, 45, 60 };
+            int[] line1Y = { 10, 50, 15, 60, 12};
+            int[] line2X = { 0, 15, 30, 45, 60 };
+            int[] line2Y = { 45, 12, 60, 34, 60 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1X);
@@ -61,8 +61,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string LineColorAndLegendTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -82,8 +82,8 @@ namespace Wikiled.Google.Charts.TestApp
 
         public static string LineStyleTest()
         {
-            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
