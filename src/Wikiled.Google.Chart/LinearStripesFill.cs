@@ -5,27 +5,16 @@ namespace Wikiled.Google.Chart
 {
     public class LinearStripesFill
     {
-        private ChartFillTarget fillTarget;
         /// <summary>
         /// The area that will be filled.
         /// </summary>
-        public ChartFillTarget FillTarget
-        {
-            get { return fillTarget; }
-            set { fillTarget = value; }
-        }
-
-        private int angle;
+        public ChartFillTarget FillTarget { get; set; }
         /// <summary>
         /// specifies the angle of the gradient between 0 (vertical) and 90 (horizontal)
         /// </summary>
-        public int Angle
-        {
-            get { return angle; }
-            set { angle = value; }
-        }
+        public int Angle { get; set; }
 
-        private List<ColorWidthPair> colorWidthPairs = new List<ColorWidthPair>();
+        private readonly List<ColorWidthPair> colorWidthPairs = new List<ColorWidthPair>();
 
         /// <summary>
         /// Create a linear stripes fill.
@@ -34,8 +23,8 @@ namespace Wikiled.Google.Chart
         /// <param name="angle">specifies the angle of the gradient between 0 (vertical) and 90 (horizontal)</param>
         public LinearStripesFill(ChartFillTarget fillTarget, int angle)
         {
-            this.fillTarget = fillTarget;
-            this.angle = angle;
+            FillTarget = fillTarget;
+            Angle = angle;
         }
 
         /// <summary>
@@ -45,12 +34,12 @@ namespace Wikiled.Google.Chart
         /// <param name="width">must be between 0 and 1 where 1 is the full width of the chart</param>
         public void AddColorWidthPair(string color, double width)
         {
-            this.colorWidthPairs.Add(new ColorWidthPair(color, width));
+            colorWidthPairs.Add(new ColorWidthPair(color, width));
         }
 
         internal string GetTypeUrlChar()
         {
-            switch (fillTarget)
+            switch (FillTarget)
             {
                 case ChartFillTarget.ChartArea:
                     return "c";
@@ -65,7 +54,7 @@ namespace Wikiled.Google.Chart
             string s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "ls,";
-            s += angle.ToString() + ",";
+            s += Angle.ToString() + ",";
 
             foreach (ColorWidthPair colorWidthPair in colorWidthPairs)
             {
@@ -74,30 +63,6 @@ namespace Wikiled.Google.Chart
             }
 
             return s.TrimEnd(",".ToCharArray());
-        }
-
-        private class ColorWidthPair
-        {
-            /// <summary>
-            /// RRGGBB format hexadecimal number
-            /// </summary>
-            public string Color;
-
-            /// <summary>
-            /// must be between 0 and 1 where 1 is the full width of the chart
-            /// </summary>
-            public double Width;
-
-            /// <summary>
-            /// Describes a linear stripe. Stripes are repeated until the chart is filled.
-            /// </summary>
-            /// <param name="color">RGGBB format hexadecimal number</param>
-            /// <param name="width">must be between 0 and 1 where 1 is the full width of the chart</param>
-            public ColorWidthPair(string color, double width)
-            {
-                this.Color = color;
-                this.Width = width;
-            }
         }
     }
 }

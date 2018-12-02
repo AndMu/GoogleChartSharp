@@ -7,5 +7,8 @@
     <ProjectUrl>https://github.com/AndMu/GoogleChartSharp</ProjectUrl>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Api\" />
+  </ItemGroup>
   
 </Project>

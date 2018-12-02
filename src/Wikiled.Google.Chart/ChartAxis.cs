@@ -3,74 +3,31 @@ using System.Collections.Generic;
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Axis label alignment. By default: x-axis labels are centered, left y-axis 
-    /// labels are right aligned, right y-axis labels are left aligned
-    /// </summary>
-    public enum AxisAlignmentType
-    {
-        /// <summary>
-        /// Left align label
-        /// </summary>
-        Left,
-
-        /// <summary>
-        /// Center align label
-        /// </summary>
-        Centered,
-
-        /// <summary>
-        /// Right align label
-        /// </summary>
-        Right,
-
-        /// <summary>
-        /// Use default alignment
-        /// </summary>
-        Unset
-    }
-
-    /// <summary>
     /// Chart Axis
     /// </summary>
     public class ChartAxis
     {
-        ChartAxisType axisType;
-        List<ChartAxisLabel> axisLabels = new List<ChartAxisLabel>();
+        readonly ChartAxisType axisType;
+
+        readonly List<ChartAxisLabel> axisLabels = new List<ChartAxisLabel>();
         int upperBound;
         int lowerBound;
         bool rangeSet;
-        string color;
-        int fontSize = -1;
-        AxisAlignmentType alignment = AxisAlignmentType.Unset;
 
-        #region Properties
         /// <summary>
         /// an RRGGBB format hexadecimal number
         /// </summary>
-        public string Color
-        {
-            get { return color; }
-            set { color = value; }
-        }
+        public string Color { get; set; }
 
         /// <summary>
         /// optional if used this specifies the size in pixels
         /// </summary>
-        public int FontSize
-        {
-            get { return fontSize; }
-            set { fontSize = value; }
-        }
+        public int FontSize { get; set; } = -1;
 
         /// <summary>
         /// By default: x-axis labels are centered, left y-axis labels are right aligned, right y-axis labels are left aligned
         /// </summary>
-        public AxisAlignmentType Alignment
-        {
-            get { return alignment; }
-            set { alignment = value; }
-        }
-        #endregion
+        public AxisAlignmentType Alignment { get; set; } = AxisAlignmentType.Unset;
 
         /// <summary>
         /// Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
@@ -93,7 +50,7 @@ namespace Wikiled.Google.Chart
             {
                 foreach (string label in labels)
                 {
-                    this.axisLabels.Add(new ChartAxisLabel(label, -1));
+                    axisLabels.Add(new ChartAxisLabel(label, -1));
                 }
             }
         }
@@ -107,7 +64,7 @@ namespace Wikiled.Google.Chart
         {
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
-            this.rangeSet = true;
+            rangeSet = true;
         }
 
         /// <summary>
@@ -121,19 +78,19 @@ namespace Wikiled.Google.Chart
 
         internal string UrlAxisStyle()
         {
-            if (color == null)
+            if (Color == null)
             {
                 return null;
             }
-            string result = color + ",";
-            if (fontSize != -1)
+            string result = Color + ",";
+            if (FontSize != -1)
             {
-                result += fontSize.ToString() + ",";
+                result += FontSize.ToString() + ",";
             }
 
-            if (alignment != AxisAlignmentType.Unset)
+            if (Alignment != AxisAlignmentType.Unset)
             {
-                switch (alignment)
+                switch (Alignment)
                 {
                     case AxisAlignmentType.Left:
                         result += "-1,";
@@ -202,78 +159,5 @@ namespace Wikiled.Google.Chart
             }
             return null;
         }
-    }
-
-    /// <summary>
-    /// Describes an axis label
-    /// </summary>
-    public class ChartAxisLabel
-    {
-        /// <summary>
-        /// This text will be displayed on the axis
-        /// </summary>
-        public string Text;
-
-        /// <summary>
-        /// A value within the axis range
-        /// </summary>
-        public float Position;
-
-        /// <summary>
-        /// Create an axis label without position information, labels will be evenly spaced on the axis
-        /// </summary>
-        /// <param name="text">The label text</param>
-        public ChartAxisLabel(string text)
-            : this(text, -1)
-        {
-        }
-
-        /// <summary>
-        /// Create an axis label without label text. The axis label will be evenly spaced on the axis and the text will
-        /// be it's numeric position within the axis range.
-        /// </summary>
-        /// <param name="position"></param>
-        public ChartAxisLabel(float position)
-            : this(null, position)
-        {
-
-        }
-
-        /// <summary>
-        /// Create an axis label with label text and position.
-        /// </summary>
-        /// <param name="text">The label text</param>
-        /// <param name="position">The label position within the axis range</param>
-        public ChartAxisLabel(string text, float position)
-        {
-            this.Text = text;
-            this.Position = position;
-        }
-    }
-
-    /// <summary>
-    /// Chart axis locations
-    /// </summary>
-    public enum ChartAxisType
-    {
-        /// <summary>
-        /// Bottom x-axis
-        /// </summary>
-        Bottom,
-
-        /// <summary>
-        /// Top x-axis
-        /// </summary>
-        Top,
-
-        /// <summary>
-        /// Left y-axis
-        /// </summary>
-        Left,
-
-        /// <summary>
-        /// Right y-axis
-        /// </summary>
-        Right
     }
 }

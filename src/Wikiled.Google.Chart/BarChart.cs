@@ -3,46 +3,14 @@ using System;
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// The orientation of the bars.
-    /// </summary>
-    public enum BarChartOrientation
-    {
-        /// <summary>
-        /// Bars will be positioned vertically
-        /// </summary>
-        Vertical,
-
-        /// <summary>
-        /// Bars will be positioned horizontally
-        /// </summary>
-        Horizontal
-    }
-
-    /// <summary>
-    /// Bar chart style when using multiple data sets
-    /// </summary>
-    public enum BarChartStyle
-    {
-        /// <summary>
-        /// Multiple data sets will be stacked.
-        /// </summary>
-        Stacked,
-
-        /// <summary>
-        /// Multiple data sets will be grouped.
-        /// </summary>
-        Grouped
-    }
-
-    /// <summary>
     /// Bar Chart
     /// </summary>
     public class BarChart : Chart
     {
-        BarChartOrientation orientation;
-        BarChartStyle style;
-        int barWidth;
-        double zeroLine = 0;
+        private readonly BarChartOrientation orientation;
+        private readonly BarChartStyle style;
+        private int barWidth;
+        private double zeroLine = 0;
 
         /// <summary>
         /// Create a bar chart
@@ -64,7 +32,7 @@ namespace Wikiled.Google.Chart
         /// <param name="width">Width in pixels</param>
         public void SetBarWidth(int width)
         {
-            this.barWidth = width;
+            barWidth = width;
         }
 
         /// <summary>
@@ -82,10 +50,10 @@ namespace Wikiled.Google.Chart
         /// <returns></returns>
         protected override string UrlChartType()
         {
-            char orientationChar = this.orientation == BarChartOrientation.Horizontal ? 'h' : 'v';
-            char styleChar = this.style == BarChartStyle.Stacked ? 's' : 'g';
+            char orientationChar = orientation == BarChartOrientation.Horizontal ? 'h' : 'v';
+            char styleChar = style == BarChartStyle.Stacked ? 's' : 'g';
 
-            return String.Format("b{0}{1}", orientationChar, styleChar);
+            return $"b{orientationChar}{styleChar}";
         }
 
         /// <summary>
@@ -94,13 +62,14 @@ namespace Wikiled.Google.Chart
         protected override void CollectUrlElements()
         {
             base.CollectUrlElements();
-            if (this.barWidth != 0)
+            if (barWidth != 0)
             {
-                base.UrlElements.Enqueue(String.Format("chbh={0}", this.barWidth));
+                UrlElements.Enqueue($"chbh={barWidth}");
             }
-            if (this.zeroLine != 0)
+
+            if (zeroLine != 0)
             {
-                base.UrlElements.Enqueue(String.Format("chp={0}", this.zeroLine));
+                UrlElements.Enqueue($"chp={zeroLine}");
             }
         }
 

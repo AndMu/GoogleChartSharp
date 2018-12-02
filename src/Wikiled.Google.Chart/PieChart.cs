@@ -2,7 +2,7 @@ namespace Wikiled.Google.Chart
 {
     public class PieChart : Chart
     {
-        private PieChartType pieChartType;
+        private readonly PieChartType pieChartType;
         private string[] pieChartLabels;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Wikiled.Google.Chart
 
         protected override string UrlChartType()
         {
-            if (this.pieChartType == PieChartType.ThreeD)
+            if (pieChartType == PieChartType.ThreeD)
             {
                 return "p3";
             }
@@ -48,7 +48,7 @@ namespace Wikiled.Google.Chart
                 {
                     s += label + "|";
                 }
-                this.UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+                UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
         }
 
@@ -67,25 +67,12 @@ namespace Wikiled.Google.Chart
         /// <param name="labels">strings that will be used as label text</param>
         public void SetPieChartLabels(string[] labels)
         {
-            this.pieChartLabels = labels;
+            pieChartLabels = labels;
         }
 
         protected override ChartType GetChartType()
         {
             return ChartType.PieChart;
         }
-    }
-
-    public enum PieChartType
-    {
-        /// <summary>
-        /// Two dimensional pie chart
-        /// </summary>
-        TwoD,
-
-        /// <summary>
-        /// Three dimensional pie chart
-        /// </summary>
-        ThreeD
     }
 }

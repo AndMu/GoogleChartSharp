@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GoogleChartSharp\Wikiled.Google.Chart.csproj" />
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <ProjectReference Include="..\Wikiled.Google.Chart\Wikiled.Google.Chart.csproj" />
   </ItemGroup>
 
 

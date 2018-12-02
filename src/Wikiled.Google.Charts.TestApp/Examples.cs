@@ -2,7 +2,7 @@ using Wikiled.Google.Chart;
 
 namespace Wikiled.Google.Charts.TestApp
 {
-    class Examples
+    internal class Examples
     {
         public static string SuperSimple()
         {

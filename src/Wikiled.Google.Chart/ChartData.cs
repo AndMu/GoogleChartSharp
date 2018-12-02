@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Wikiled.Google.Chart
 {
-    class ChartData
+    internal class ChartData
     {
         public static string Encode(int[] data)
         {
@@ -55,8 +55,6 @@ namespace Wikiled.Google.Chart
 			return TextEncoding(data);
 		}
 
-        #region Simple Encoding
-
         public static string SimpleEncoding(int[] data)
         {
             return "chd=s:" + SimpleEncode(data);
@@ -94,10 +92,6 @@ namespace Wikiled.Google.Chart
 
             return chartData;
         }
-
-        #endregion
-
-        #region Text Encoding
 
         public static string TextEncoding(float[] data)
         {
@@ -169,9 +163,6 @@ namespace Wikiled.Google.Chart
 
 			return chartData.TrimEnd(",".ToCharArray());
 		}
-        #endregion
-
-        #region Extended Encoding
 
         public static string ExtendedEncoding(int[] data)
         {
@@ -213,9 +204,6 @@ namespace Wikiled.Google.Chart
 
             return chartData;
         }
-
-        #endregion
-
 
         private static int FindMaxValue(int[] data)
         {

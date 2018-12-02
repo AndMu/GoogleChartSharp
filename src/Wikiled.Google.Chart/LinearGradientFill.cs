@@ -5,27 +5,16 @@ namespace Wikiled.Google.Chart
 {
     public class LinearGradientFill
     {
-        private ChartFillTarget fillTarget;
         /// <summary>
         /// The area that will be filled.
         /// </summary>
-        public ChartFillTarget FillTarget
-        {
-            get { return fillTarget; }
-            set { fillTarget = value; }
-        }
-
-        private int angle;
+        public ChartFillTarget FillTarget { get; set; }
         /// <summary>
         /// specifies the angle of the gradient between 0 (horizontal) and 90 (vertical)
         /// </summary>
-        public int Angle
-        {
-            get { return angle; }
-            set { angle = value; }
-        }
+        public int Angle { get; set; }
 
-        private List<ColorOffsetPair> colorOffsetPairs = new List<ColorOffsetPair>();
+        private readonly List<ColorOffsetPair> colorOffsetPairs = new List<ColorOffsetPair>();
 
         /// <summary>
         /// Create a linear gradient
@@ -34,8 +23,8 @@ namespace Wikiled.Google.Chart
         /// <param name="angle">specifies the angle of the gradient between 0 (horizontal) and 90 (vertical)</param>
         public LinearGradientFill(ChartFillTarget fillTarget, int angle)
         {
-            this.fillTarget = fillTarget;
-            this.angle = angle;
+            FillTarget = fillTarget;
+            Angle = angle;
         }
 
         /// <summary>
@@ -45,12 +34,12 @@ namespace Wikiled.Google.Chart
         /// <param name="offset">specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the left-most</param>
         public void AddColorOffsetPair(string color, double offset)
         {
-            this.colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
+            colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
         }
 
         internal string GetTypeUrlChar()
         {
-            switch (fillTarget)
+            switch (FillTarget)
             {
                 case ChartFillTarget.ChartArea:
                     return "c";
@@ -65,7 +54,7 @@ namespace Wikiled.Google.Chart
             string s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "lg,";
-            s += angle.ToString() + ",";
+            s += Angle.ToString() + ",";
 
             foreach (ColorOffsetPair colorOffsetPair in colorOffsetPairs)
             {
@@ -74,31 +63,6 @@ namespace Wikiled.Google.Chart
             }
 
             return s.TrimEnd(",".ToCharArray());
-        }
-
-        private class ColorOffsetPair
-        {
-            /// <summary>
-            /// RRGGBB format hexadecimal number
-            /// </summary>
-            public string Color;
-
-            /// <summary>
-            /// specify at what point the color is pure where: 0 specifies the right-most 
-            /// chart position and 1 the left-most.
-            /// </summary>
-            public double Offset;
-
-            /// <summary>
-            /// 
-            /// </summary>
-            /// <param name="color">RRGGBB format hexadecimal number</param>
-            /// <param name="offset">specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the left-most</param>
-            public ColorOffsetPair(string color, double offset)
-            {
-                this.Color = color;
-                this.Offset = offset;
-            }
         }
     }
 }

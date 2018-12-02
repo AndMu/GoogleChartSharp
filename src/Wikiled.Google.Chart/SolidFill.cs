@@ -2,25 +2,14 @@ namespace Wikiled.Google.Chart
 {
     public class SolidFill
     {
-        private ChartFillTarget fillTarget;
         /// <summary>
         /// The area that will be filled.
         /// </summary>
-        public ChartFillTarget FillTarget
-        {
-            get { return fillTarget; }
-            set { fillTarget = value; }
-        }
-
-        private string color;
+        public ChartFillTarget FillTarget { get; set; }
         /// <summary>
         /// an RRGGBB format hexadecimal number
         /// </summary>
-        public string Color
-        {
-            get { return color; }
-            set { color = value; }
-        }
+        public string Color { get; set; }
 
         /// <summary>
         /// Create a solid fill
@@ -29,13 +18,13 @@ namespace Wikiled.Google.Chart
         /// <param name="color">an RRGGBB format hexadecimal number</param>
         public SolidFill(ChartFillTarget fillTarget, string color)
         {
-            this.fillTarget = fillTarget;
-            this.color = color;
+            FillTarget = fillTarget;
+            Color = color;
         }
 
         private string GetTypeUrlChar()
         {
-            switch (fillTarget)
+            switch (FillTarget)
             {
                 case ChartFillTarget.ChartArea:
                     return "c";
@@ -50,21 +39,8 @@ namespace Wikiled.Google.Chart
             string s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "s,";
-            s += this.color;
+            s += Color;
             return s;
         }
-    }
-
-    public enum ChartFillTarget
-    {
-        /// <summary>
-        /// Fill the entire background of the chart
-        /// </summary>
-        Background,
-
-        /// <summary>
-        /// Fill only the chart area of the chart
-        /// </summary>
-        ChartArea
     }
 }

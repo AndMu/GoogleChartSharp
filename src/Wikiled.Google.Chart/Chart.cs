@@ -6,46 +6,33 @@ namespace Wikiled.Google.Chart
     /// <summary>
     /// Base type for all charts.
     /// </summary>
-    public abstract class Chart
+    public abstract class Chart : IChart
     {
         private const string ApiBase = "http://chart.apis.google.com/chart?";
-        internal Queue<string> UrlElements = new Queue<string>();
+
+        internal Queue<string> UrlElements { get; } = new Queue<string>();
 
         /// <summary>
         /// Create a chart
         /// </summary>
         /// <param name="width">width in pixels</param>
         /// <param name="height">height in pixels</param>
-        public Chart(int width, int height)
+        protected Chart(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            Width = width;
+            Height = height;
         }
-
-        #region Chart Dimensions
-        private int width;
-        private int height;
 
         /// <summary>
         /// Chart width in pixels.
         /// </summary>
-        public int Width
-        {
-            get { return width; }
-            set { width = value; }
-        }
+        public int Width { get; set; }
 
         /// <summary>
         /// Chart height in pixels.
         /// </summary>
-        public int Height
-        {
-            get { return height; }
-            set { height = value; }
-        }
-        #endregion
+        public int Height { get; set; }
 
-        #region Chart Data
         private string data;
 
         /// <summary>
@@ -101,9 +88,7 @@ namespace Wikiled.Google.Chart
 		{
 			this.data = ChartData.Encode(data);
 		}
-        #endregion
 
-        # region Chart Title
         private string title;
         private string titleColor;
 
@@ -126,7 +111,7 @@ namespace Wikiled.Google.Chart
         public void SetTitle(string title, string color)
         {
             SetTitle(title);
-            this.titleColor = color;
+            titleColor = color;
         }
 
         /// <summary>
@@ -138,11 +123,9 @@ namespace Wikiled.Google.Chart
         public void SetTitle(string title, string color, int fontSize)
         {
             SetTitle(title);
-            this.titleColor = color + "," + fontSize;
+            titleColor = color + "," + fontSize;
         }
-        #endregion
 
-        #region Colors
         private string[] datasetColors;
 
         /// <summary>
@@ -156,12 +139,11 @@ namespace Wikiled.Google.Chart
             this.datasetColors = datasetColors;
         }
 
-        #endregion
+        readonly List<SolidFill> solidFills = new List<SolidFill>();
 
-        #region Fills
-        List<SolidFill> solidFills = new List<SolidFill>();
-        List<LinearGradientFill> linearGradientFills = new List<LinearGradientFill>();
-        List<LinearStripesFill> linearStripesFills = new List<LinearStripesFill>();
+        readonly List<LinearGradientFill> linearGradientFills = new List<LinearGradientFill>();
+
+        readonly List<LinearStripesFill> linearStripesFills = new List<LinearStripesFill>();
 
         /// <summary>
         /// Add a solid fill to this chart.
@@ -189,9 +171,7 @@ namespace Wikiled.Google.Chart
         {
             linearStripesFills.Add(linearStripesFill);
         }
-        #endregion
 
-        #region Grid
         bool gridSet = false;
         private float gridXAxisStepSize = -1;
         private float gridYAxisStepSize = -1;
@@ -211,11 +191,11 @@ namespace Wikiled.Google.Chart
                 throw new InvalidFeatureForChartTypeException();
             }
 
-            this.gridXAxisStepSize = xAxisStepSize;
-            this.gridYAxisStepSize = yAxisStepSize;
-            this.gridLengthLineSegment = -1;
-            this.gridLengthBlankSegment = -1;
-            this.gridSet = true;
+            gridXAxisStepSize = xAxisStepSize;
+            gridYAxisStepSize = yAxisStepSize;
+            gridLengthLineSegment = -1;
+            gridLengthBlankSegment = -1;
+            gridSet = true;
         }
 
         /// <summary>
@@ -233,18 +213,18 @@ namespace Wikiled.Google.Chart
                 throw new InvalidFeatureForChartTypeException();
             }
 
-            this.gridXAxisStepSize = xAxisStepSize;
-            this.gridYAxisStepSize = yAxisStepSize;
-            this.gridLengthLineSegment = lengthLineSegment;
-            this.gridLengthBlankSegment = lengthBlankSegment;
-            this.gridSet = true;
+            gridXAxisStepSize = xAxisStepSize;
+            gridYAxisStepSize = yAxisStepSize;
+            gridLengthLineSegment = lengthLineSegment;
+            gridLengthBlankSegment = lengthBlankSegment;
+            gridSet = true;
         }
 
         private string GetGridUrlElement()
         {
             if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
             {
-                string s = String.Format("chg={0},{1}", gridXAxisStepSize.ToString(), gridYAxisStepSize.ToString());
+                string s = $"chg={gridXAxisStepSize.ToString()},{gridYAxisStepSize.ToString()}";
                 if (gridLengthLineSegment != -1 && gridLengthBlankSegment != -1)
                 {
                     s += "," + gridLengthLineSegment.ToString() + "," + gridLengthBlankSegment.ToString();
@@ -254,12 +234,11 @@ namespace Wikiled.Google.Chart
             return null;
         }
 
-        #endregion
+        readonly List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
 
-        #region Markers
-        List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
-        List<RangeMarker> rangeMarkers = new List<RangeMarker>();
-        List<FillArea> fillAreas = new List<FillArea>();
+        readonly List<RangeMarker> rangeMarkers = new List<RangeMarker>();
+
+        readonly List<FillArea> fillAreas = new List<FillArea>();
 
         /// <summary>
         /// Add a fill area to the chart. Fill areas are fills between / under lines.
@@ -267,7 +246,7 @@ namespace Wikiled.Google.Chart
         /// <param name="fillArea"></param>
         public void AddFillArea(FillArea fillArea)
         {
-            this.fillAreas.Add(fillArea);
+            fillAreas.Add(fillArea);
         }
 
         /// <summary>
@@ -276,7 +255,7 @@ namespace Wikiled.Google.Chart
         /// <param name="shapeMarker"></param>
         public void AddShapeMarker(ShapeMarker shapeMarker)
         {
-            this.shapeMarkers.Add(shapeMarker);
+            shapeMarkers.Add(shapeMarker);
         }
 
         /// <summary>
@@ -285,7 +264,7 @@ namespace Wikiled.Google.Chart
         /// <param name="rangeMarker"></param>
         public void AddRangeMarker(RangeMarker rangeMarker)
         {
-            this.rangeMarkers.Add(rangeMarker);
+            rangeMarkers.Add(rangeMarker);
         }
 
         private string GetFillAreasUrlElement()
@@ -318,11 +297,9 @@ namespace Wikiled.Google.Chart
             return s.TrimEnd("|".ToCharArray());
         }
 
-        #endregion
+        readonly List<ChartAxis> axes = new List<ChartAxis>();
 
-        #region Labels
-        List<ChartAxis> axes = new List<ChartAxis>();
-        List<string> legendStrings = new List<string>();
+        readonly List<string> legendStrings = new List<string>();
 
         /// <summary>
         /// Set chart legend
@@ -344,9 +321,7 @@ namespace Wikiled.Google.Chart
         {
             axes.Add(axis);
         }
-        #endregion
 
-		#region Output
         /// <summary>
         /// Return the chart api url for this chart
         /// </summary>
@@ -370,18 +345,18 @@ namespace Wikiled.Google.Chart
         protected virtual void CollectUrlElements()
         {
             UrlElements.Clear();
-            UrlElements.Enqueue(String.Format("cht={0}", this.UrlChartType()));
-            UrlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
-            UrlElements.Enqueue(this.data);
+            UrlElements.Enqueue($"cht={UrlChartType()}");
+            UrlElements.Enqueue($"chs={Width}x{Height}");
+            UrlElements.Enqueue(data);
 
             // chart title
             if (title != null)
             {
-                UrlElements.Enqueue(String.Format("chtt={0}", this.title));
+                UrlElements.Enqueue($"chtt={title}");
             }
             if (titleColor != null)
             {
-                UrlElements.Enqueue(String.Format("chts={0}", this.titleColor));
+                UrlElements.Enqueue($"chts={titleColor}");
             }
 
             // dataset colors
@@ -508,7 +483,7 @@ namespace Wikiled.Google.Chart
         {
             string url = string.Empty;
 
-            url += Chart.ApiBase;
+            url += ApiBase;
             url += UrlElements.Dequeue();
 
             while (UrlElements.Count > 0)
@@ -520,26 +495,5 @@ namespace Wikiled.Google.Chart
         }
 
         
-    }
-	#endregion
-
-
-    /// <summary>
-    /// Thrown if the current chart type does not support the requested feature
-    /// </summary>
-    public class InvalidFeatureForChartTypeException : Exception
-    {
-    }
-
-    /// <summary>
-    /// Chart types, used internally
-    /// </summary>
-    public enum ChartType
-    {
-        LineChart,
-        ScatterPlot,
-        BarChart,
-        VennDiagram,
-        PieChart
     }
 }

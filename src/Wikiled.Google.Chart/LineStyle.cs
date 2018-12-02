@@ -2,36 +2,20 @@ namespace Wikiled.Google.Chart
 {
     public class LineStyle
     {
-        private float lineThickness;
-        private float lengthOfSegment;
-        private float lengthOfBlankSegment;
-
         /// <summary>
         /// line thickness in pixels
         /// </summary>
-        public float LineThickness
-        {
-            get { return lineThickness; }
-            set { lineThickness = value; }
-        }
+        public float LineThickness { get; set; }
 
         /// <summary>
         /// length of each solid line segment in pixels
         /// </summary>
-        public float LengthOfSegment
-        {
-            get { return lengthOfSegment; }
-            set { lengthOfSegment = value; }
-        }
+        public float LengthOfSegment { get; set; }
 
         /// <summary>
         /// length of each blank line segment in pixels
         /// </summary>
-        public float LengthOfBlankSegment
-        {
-            get { return lengthOfBlankSegment; }
-            set { lengthOfBlankSegment = value; }
-        }
+        public float LengthOfBlankSegment { get; set; }
 
         /// <summary>
         /// Create a line style
@@ -41,9 +25,9 @@ namespace Wikiled.Google.Chart
         /// <param name="lengthOfBlankSegment">length of each blank line segment in pixels</param>
         public LineStyle(float lineThickness, float lengthOfSegment, float lengthOfBlankSegment)
         {
-            this.lineThickness = lineThickness;
-            this.lengthOfSegment = lengthOfSegment;
-            this.lengthOfBlankSegment = lengthOfBlankSegment;
+            LineThickness = lineThickness;
+            LengthOfSegment = lengthOfSegment;
+            LengthOfBlankSegment = lengthOfBlankSegment;
         }
     }
 }

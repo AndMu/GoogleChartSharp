@@ -5,37 +5,19 @@ namespace Wikiled.Google.Chart
     /// </summary>
     public class FillArea
     {
-        private FillAreaType type;
-
-        private string color;
+        private readonly FillAreaType type;
         /// <summary>
         /// an RRGGBB format hexadecimal number
         /// </summary>
-        public string Color
-        {
-            get { return color; }
-            set { color = value; }
-        }
-
-        private int startLineIndex;
+        public string Color { get; set; }
         /// <summary>
         /// the index of the line at which the fill starts. This is determined by the order in which data sets are added. The first data set specified has an index of zero (0), the second 1, and so on.
         /// </summary>
-        public int StartLineIndex
-        {
-            get { return startLineIndex; }
-            set { startLineIndex = value; }
-        }
-
-        private int endLineIndex;
+        public int StartLineIndex { get; set; }
         /// <summary>
         /// the index of the line at which the fill ends. This is determined by the order in which data sets are added. The first data set specified has an index of zero (0), the second 1, and so on.
         /// </summary>
-        public int EndLineIndex
-        {
-            get { return endLineIndex; }
-            set { endLineIndex = value; }
-        }
+        public int EndLineIndex { get; set; }
 
         /// <summary>
         /// Create a fill area between lines for use on a line chart.
@@ -45,10 +27,10 @@ namespace Wikiled.Google.Chart
         /// <param name="endLineIndex">line indexes are determined by the order in which datasets are added. The first set is index 0, then index 1 etc</param>
         public FillArea(string color, int startLineIndex, int endLineIndex)
         {
-            this.type = FillAreaType.MultiLine;
-            this.color = color;
-            this.startLineIndex = startLineIndex;
-            this.endLineIndex = endLineIndex;
+            type = FillAreaType.MultiLine;
+            Color = color;
+            StartLineIndex = startLineIndex;
+            EndLineIndex = endLineIndex;
         }
 
         /// <summary>
@@ -58,9 +40,9 @@ namespace Wikiled.Google.Chart
         /// <param name="lineIndex">line indexes are determined by the order in which datasets are added. The first set is index 0, then index 1 etc</param>
         public FillArea(string color, int lineIndex)
         {
-            this.type = FillAreaType.SingleLine;
-            this.color = color;
-            this.startLineIndex = lineIndex;
+            type = FillAreaType.SingleLine;
+            Color = color;
+            StartLineIndex = lineIndex;
         }
 
         internal string GetUrlString()
@@ -70,37 +52,21 @@ namespace Wikiled.Google.Chart
             if (type == FillAreaType.MultiLine)
             {
                 s += "b" + ",";
-                s += this.color + ",";
-                s += this.startLineIndex.ToString() + ",";
-                s += this.endLineIndex.ToString() + ",";
+                s += Color + ",";
+                s += StartLineIndex.ToString() + ",";
+                s += EndLineIndex.ToString() + ",";
                 s += "0"; // ignored
             }
             else if (type == FillAreaType.SingleLine)
             {
                 s += "B" + ",";
-                s += this.color + ",";
-                s += this.startLineIndex.ToString() + ",";
+                s += Color + ",";
+                s += StartLineIndex.ToString() + ",";
                 s += "0" + ","; // ignored
                 s += "0"; // ignored
             }
 
             return s;
         }
-    }
-
-    /// <summary>
-    /// Specify area fill behavior
-    /// </summary>
-    public enum FillAreaType
-    {
-        /// <summary>
-        /// All area under the line will be filled
-        /// </summary>
-        SingleLine,
-
-        /// <summary>
-        /// The area between this line and the next will be filled
-        /// </summary>
-        MultiLine
     }
 }

@@ -2,52 +2,23 @@ namespace Wikiled.Google.Chart
 {
     public class ShapeMarker
     {
-        ShapeMarkerType type;
-        public ShapeMarkerType Type
-        {
-            get { return type; }
-            set { type = value; }
-        }
-
-        string color;
+        public ShapeMarkerType Type { get; set; }
         /// <summary>
         /// an RRGGBB format hexadecimal number.
         /// </summary>
-        public string HexColor
-        {
-            get { return color; }
-            set { color = value; }
-        }
-
-        int datasetIndex;
+        public string HexColor { get; set; }
         /// <summary>
         /// the index of the line on which to draw the marker. This is 0 for the first data set, 1 for the second and so on
         /// </summary>
-        public int DatasetIndex
-        {
-            get { return datasetIndex; }
-            set { datasetIndex = value; }
-        }
-
-        float dataPoint;
+        public int DatasetIndex { get; set; }
         /// <summary>
         /// a floating point value that specifies on which data point the marker will be drawn. This is 1 for the first data set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points
         /// </summary>
-        public float DataPoint
-        {
-            get { return dataPoint; }
-            set { dataPoint = value; }
-        }
-
-        int size;
+        public float DataPoint { get; set; }
         /// <summary>
         /// the size of the marker in pixels
         /// </summary>
-        public int Size
-        {
-            get { return size; }
-            set { size = value; }
-        }
+        public int Size { get; set; }
 
         /// <summary>
         /// Create a shape marker for points on line charts and scatter plots
@@ -59,16 +30,16 @@ namespace Wikiled.Google.Chart
         /// <param name="size">the size of the marker in pixels</param>
         public ShapeMarker(ShapeMarkerType markerType, string color, int datasetIndex, float dataPoint, int size)
         {
-            this.type = markerType;
-            this.color = color;
-            this.datasetIndex = datasetIndex;
-            this.dataPoint = dataPoint;
-            this.size = size;
+            Type = markerType;
+            HexColor = color;
+            DatasetIndex = datasetIndex;
+            DataPoint = dataPoint;
+            Size = size;
         }
 
         internal string GetTypeUrlChar()
         {
-            switch (this.type)
+            switch (Type)
             {
                 case ShapeMarkerType.Arrow:
                     return "a";
@@ -96,61 +67,11 @@ namespace Wikiled.Google.Chart
         {
             string s = string.Empty;
             s += GetTypeUrlChar() + ",";
-            s += color + ",";
-            s += datasetIndex + ",";
-            s += dataPoint + ",";
-            s += size.ToString();
+            s += HexColor + ",";
+            s += DatasetIndex + ",";
+            s += DataPoint + ",";
+            s += Size.ToString();
             return s;
         }
-    }
-
-    public enum ShapeMarkerType
-    {
-        /// <summary>
-        /// A marker in the shape of an arrow
-        /// </summary>
-        Arrow,
-
-        /// <summary>
-        /// A marker in the shape of a cross
-        /// </summary>
-        Cross,
-
-        /// <summary>
-        /// A marker in the shape of a diamond
-        /// </summary>
-        Diamond,
-
-        /// <summary>
-        /// A marker in the shape of a circle
-        /// </summary>
-        Circle,
-
-        /// <summary>
-        /// A marker in the shape of a square
-        /// </summary>
-        Square,
-
-        /// <summary>
-        /// A marker that is a vertical line from the x-axis to the data point
-        /// </summary>
-        VerticalLineToDataPoint,
-
-        /// <summary>
-        /// A marker that is a vertical line from the x-axis to the top of the chart area
-        /// through the data point
-        /// </summary>
-        VerticalLine,
-
-        /// <summary>
-        /// A marker that is a horizontal line from the y-axis to the edge of the chart area 
-        /// through the data point
-        /// </summary>
-        HorizontalLine,
-
-        /// <summary>
-        /// A marker in the shape of an X
-        /// </summary>
-        XShape
     }
 }
