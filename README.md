@@ -1,6 +1,10 @@
-#Wikiled.Google.Chart
+# Wikiled.Google.Chart
 
-GoogleChartSharp
+Nuget library
+
+![nuget](https://img.shields.io/nuget/v/Wikiled.Google.Chart.svg)
+
+GoogleChartSharp 
 ================
 
 A C# wrapper for the Google Chart Images API.
