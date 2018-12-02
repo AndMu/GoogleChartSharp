@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     class ChartData
     {
         public static string Encode(int[] data)
         {
-            int maxValue = findMaxValue(data);
+            int maxValue = FindMaxValue(data);
             if (maxValue <= 61)
             {
                 return SimpleEncoding(data);
@@ -23,7 +22,7 @@ namespace GoogleChartSharp
 
         public static string Encode(ICollection<int[]> data)
         {
-            int maxValue = findMaxValue(data);
+            int maxValue = FindMaxValue(data);
             if (maxValue <= 61)
             {
                 return SimpleEncoding(data);
@@ -60,7 +59,7 @@ namespace GoogleChartSharp
 
         public static string SimpleEncoding(int[] data)
         {
-            return "chd=s:" + simpleEncode(data);
+            return "chd=s:" + SimpleEncode(data);
         }
 
         public static string SimpleEncoding(ICollection<int[]> data)
@@ -69,13 +68,13 @@ namespace GoogleChartSharp
 
             foreach (int[] objectArray in data)
             {
-                chartData += simpleEncode(objectArray) + ",";
+                chartData += SimpleEncode(objectArray) + ",";
             }
 
             return chartData.TrimEnd(",".ToCharArray());
         }
 
-        private static string simpleEncode(int[] data)
+        private static string SimpleEncode(int[] data)
         {
             string simpleEncoding = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             string chartData = string.Empty;
@@ -102,7 +101,7 @@ namespace GoogleChartSharp
 
         public static string TextEncoding(float[] data)
         {
-            return "chd=t:" + textEncode(data);
+            return "chd=t:" + TextEncode(data);
         }
 
         public static string TextEncoding(ICollection<float[]> data)
@@ -111,13 +110,13 @@ namespace GoogleChartSharp
 
             foreach (float[] objectArray in data)
             {
-				chartData += textEncode (objectArray) + "|";
+				chartData += TextEncode (objectArray) + "|";
             }
 
             return chartData.TrimEnd("|".ToCharArray());
         }
 
-        private static string textEncode(float[] data)
+        private static string TextEncode(float[] data)
         {
             string chartData = string.Empty;
 
@@ -137,7 +136,7 @@ namespace GoogleChartSharp
         }
 		public static string TextEncoding(long[] data)
 		{
-			return "chd=t:" + textEncode(data);
+			return "chd=t:" + TextEncode(data);
 		}
 
 		public static string TextEncoding(ICollection<long[]> data)
@@ -146,13 +145,13 @@ namespace GoogleChartSharp
 
 			foreach (long[] objectArray in data)
 			{
-				chartData += textEncode (objectArray) + "|";
+				chartData += TextEncode (objectArray) + "|";
 			}
 
 			return chartData.TrimEnd("|".ToCharArray());
 		}
 
-		private static string textEncode(long[] data)
+		private static string TextEncode(long[] data)
 		{
 			string chartData = string.Empty;
 
@@ -176,7 +175,7 @@ namespace GoogleChartSharp
 
         public static string ExtendedEncoding(int[] data)
         {
-            return "chd=e:" + extendedEncode(data);
+            return "chd=e:" + ExtendedEncode(data);
         }
 
         public static string ExtendedEncoding(ICollection<int[]> data)
@@ -185,13 +184,13 @@ namespace GoogleChartSharp
 
             foreach (int[] objectArray in data)
             {
-                chartData += extendedEncode(objectArray) + ",";
+                chartData += ExtendedEncode(objectArray) + ",";
             }
 
             return chartData.TrimEnd(",".ToCharArray());
         }
 
-        private static string extendedEncode(int[] data)
+        private static string ExtendedEncode(int[] data)
         {
             string extendedEncoding = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.";
             string chartData = string.Empty;
@@ -218,7 +217,7 @@ namespace GoogleChartSharp
         #endregion
 
 
-        private static int findMaxValue(int[] data)
+        private static int FindMaxValue(int[] data)
         {
             int maxValue = -1;
             foreach (int value in data)
@@ -232,13 +231,13 @@ namespace GoogleChartSharp
             return maxValue;
         }
 
-        private static int findMaxValue(ICollection<int[]> data)
+        private static int FindMaxValue(ICollection<int[]> data)
         {
             List<int> maxValuesList = new List<int>();
 
             foreach (int[] objectArray in data)
             {
-                maxValuesList.Add(findMaxValue(objectArray));
+                maxValuesList.Add(FindMaxValue(objectArray));
             }
 
             int[] maxValues = maxValuesList.ToArray();

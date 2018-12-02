@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
     class Program
     {
@@ -17,91 +12,91 @@ namespace Tests
 
                 #region Axes
                 tw.WriteLine("<h3>Axes</h3>");
-                tw.WriteLine(getImageTag(AxesTests.allBasicAxesTest()));
-                tw.WriteLine(getImageTag(AxesTests.axesLabelsTest()));
-                tw.WriteLine(getImageTag(AxesTests.axesRangeTest()));
+                tw.WriteLine(GetImageTag(AxesTests.AllBasicAxesTest()));
+                tw.WriteLine(GetImageTag(AxesTests.AxesLabelsTest()));
+                tw.WriteLine(GetImageTag(AxesTests.AxesRangeTest()));
                 tw.WriteLine("<br />");
-                tw.WriteLine(getImageTag(AxesTests.axesStyleTest()));
-                tw.WriteLine(getImageTag(AxesTests.stackedAxesTest()));
+                tw.WriteLine(GetImageTag(AxesTests.AxesStyleTest()));
+                tw.WriteLine(GetImageTag(AxesTests.StackedAxesTest()));
                 #endregion
 
                 # region Line Charts
                 tw.WriteLine("<h3>Line Charts</h3>");
-                tw.WriteLine(getImageTag(LineChartTests.singleDatasetPerLine()));
-                tw.WriteLine(getImageTag(LineChartTests.multiDatasetPerLine()));
-                tw.WriteLine(getImageTag(LineChartTests.lineColorAndLegendTest()));
+                tw.WriteLine(GetImageTag(LineChartTests.SingleDatasetPerLine()));
+                tw.WriteLine(GetImageTag(LineChartTests.MultiDatasetPerLine()));
+                tw.WriteLine(GetImageTag(LineChartTests.LineColorAndLegendTest()));
                 tw.WriteLine("<br />");
-                tw.WriteLine(getImageTag(LineChartTests.lineStyleTest()));
-                tw.WriteLine(getImageTag(LineChartTests.sparklines()));
+                tw.WriteLine(GetImageTag(LineChartTests.LineStyleTest()));
+                tw.WriteLine(GetImageTag(LineChartTests.Sparklines()));
                 #endregion
 
                 #region Fills
                 tw.WriteLine("<h3>Fills</h3>");
-                tw.WriteLine(getImageTag(FillsTests.multiLineAreaFillsTest()));
-                tw.WriteLine(getImageTag(FillsTests.singleLineAreaFillTest()));
-                tw.WriteLine(getImageTag(FillsTests.linearGradientFillTest()));
+                tw.WriteLine(GetImageTag(FillsTests.MultiLineAreaFillsTest()));
+                tw.WriteLine(GetImageTag(FillsTests.SingleLineAreaFillTest()));
+                tw.WriteLine(GetImageTag(FillsTests.LinearGradientFillTest()));
                 tw.WriteLine("<br />");
-                tw.WriteLine(getImageTag(FillsTests.linearStripesTest()));
-                tw.WriteLine(getImageTag(FillsTests.solidFillTest()));
+                tw.WriteLine(GetImageTag(FillsTests.LinearStripesTest()));
+                tw.WriteLine(GetImageTag(FillsTests.SolidFillTest()));
                 #endregion
 
                 #region Markers
                 tw.WriteLine("<h3>Markers</h3>");
-                tw.WriteLine(getImageTag(MarkersTests.rangeMarkersTest()));
-                tw.WriteLine(getImageTag(MarkersTests.shapeMarkersTest()));
+                tw.WriteLine(GetImageTag(MarkersTests.RangeMarkersTest()));
+                tw.WriteLine(GetImageTag(MarkersTests.ShapeMarkersTest()));
 
                 #endregion
 
                 #region Grids
                 tw.WriteLine("<h3>Grids</h3>");
-                tw.WriteLine(getImageTag(GridTests.stepSizeTest()));
-                tw.WriteLine(getImageTag(GridTests.allParamsTest()));
-                tw.WriteLine(getImageTag(GridTests.solidGridTest()));
+                tw.WriteLine(GetImageTag(GridTests.StepSizeTest()));
+                tw.WriteLine(GetImageTag(GridTests.AllParamsTest()));
+                tw.WriteLine(GetImageTag(GridTests.SolidGridTest()));
                 #endregion
 
                 #region Bar Charts
                 tw.WriteLine("<h3>Bar Charts</h3>");
-                tw.WriteLine(getImageTag(BarChartTests.horizontalStackedTest()));
-                tw.WriteLine(getImageTag(BarChartTests.verticalStackedTest()));
-                tw.WriteLine(getImageTag(BarChartTests.horizontalGroupedTest()));
-                tw.WriteLine(getImageTag(BarChartTests.verticalGroupedTest()));
+                tw.WriteLine(GetImageTag(BarChartTests.HorizontalStackedTest()));
+                tw.WriteLine(GetImageTag(BarChartTests.VerticalStackedTest()));
+                tw.WriteLine(GetImageTag(BarChartTests.HorizontalGroupedTest()));
+                tw.WriteLine(GetImageTag(BarChartTests.VerticalGroupedTest()));
                 tw.WriteLine("<br />");
-                tw.WriteLine(getImageTag(BarChartTests.zeroLineTest()));
+                tw.WriteLine(GetImageTag(BarChartTests.ZeroLineTest()));
                 #endregion
 
                 #region Pie Charts
                 tw.WriteLine("<h3>Pie Charts</h3>");
-                tw.WriteLine(getImageTag(PieChartTests.TwoDTest()));
-                tw.WriteLine(getImageTag(PieChartTests.ThreeDTest()));
+                tw.WriteLine(GetImageTag(PieChartTests.TwoDTest()));
+                tw.WriteLine(GetImageTag(PieChartTests.ThreeDTest()));
                 #endregion
 
                 # region Venn Diagrams
                 tw.WriteLine("<h3>Venn Diagrams</h3>");
-                tw.WriteLine(getImageTag(VennDiagramTests.VennDiagramTest()));
+                tw.WriteLine(GetImageTag(VennDiagramTests.VennDiagramTest()));
                 #endregion
 
                 # region Scatter Plots
                 tw.WriteLine("<h3>Scatter Plots</h3>");
-                tw.WriteLine(getImageTag(ScatterPlotTests.scatterPlotTest()));
+                tw.WriteLine(GetImageTag(ScatterPlotTests.ScatterPlotTest()));
                 #endregion
 
                 #region Examples
                 tw.WriteLine("<h3>Examples</h3>");
-                tw.WriteLine(getImageTag(Examples.simpleAxis()));
-                tw.WriteLine(getImageTag(Examples.axisLabels()));
-                tw.WriteLine(getImageTag(Examples.axisRange()));
-                tw.WriteLine(getImageTag(Examples.stackingAxes()));
+                tw.WriteLine(GetImageTag(Examples.SimpleAxis()));
+                tw.WriteLine(GetImageTag(Examples.AxisLabels()));
+                tw.WriteLine(GetImageTag(Examples.AxisRange()));
+                tw.WriteLine(GetImageTag(Examples.StackingAxes()));
                 tw.WriteLine("<br />");
-                tw.WriteLine(getImageTag(Examples.xkcd()));
+                tw.WriteLine(GetImageTag(Examples.Xkcd()));
                 tw.WriteLine("<br />");
-                tw.WriteLine(getImageTag(Examples.superSimple()));
+                tw.WriteLine(GetImageTag(Examples.SuperSimple()));
                 #endregion
             }
 
             Process.Start(new FileInfo("test.html").FullName);
         }
 
-        static string getImageTag(string url)
+        static string GetImageTag(string url)
         {
             return "<img src=\"" + url + "\" />";
         }

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     public class PieChart : Chart
     {
@@ -32,7 +28,7 @@ namespace GoogleChartSharp
             this.pieChartType = pieChartType;
         }
 
-        protected override string urlChartType()
+        protected override string UrlChartType()
         {
             if (this.pieChartType == PieChartType.ThreeD)
             {
@@ -42,9 +38,9 @@ namespace GoogleChartSharp
             return "p";
         }
 
-        protected override void collectUrlElements()
+        protected override void CollectUrlElements()
         {
-            base.collectUrlElements();
+            base.CollectUrlElements();
             if (pieChartLabels != null)
             {
                 string s = "chl=";
@@ -52,7 +48,7 @@ namespace GoogleChartSharp
                 {
                     s += label + "|";
                 }
-                this.urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+                this.UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
         }
 
@@ -74,7 +70,7 @@ namespace GoogleChartSharp
             this.pieChartLabels = labels;
         }
 
-        protected override ChartType getChartType()
+        protected override ChartType GetChartType()
         {
             return ChartType.PieChart;
         }

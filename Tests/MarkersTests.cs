@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
+using Wikiled.Google.Chart;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
     class MarkersTests
     {
-        public static string rangeMarkersTest()
+        public static string RangeMarkersTest()
         {
             float[] fdata = new float[] { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(250, 150);
@@ -23,7 +20,7 @@ namespace Tests
             return chart.GetUrl();
         }
 
-        public static string shapeMarkersTest()
+        public static string ShapeMarkersTest()
         {
             float[] fdata = new float[] { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(300, 150);

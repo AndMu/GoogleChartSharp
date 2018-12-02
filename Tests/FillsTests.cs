@@ -1,15 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
+using Wikiled.Google.Chart;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
     class FillsTests
     {
-        public static string solidFillTest()
+        public static string SolidFillTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Solid fill test");
             lineChart.SetData(line1);
@@ -26,9 +24,9 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string linearGradientFillTest()
+        public static string LinearGradientFillTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Linear Gradient fill test");
             lineChart.SetData(line1);
@@ -48,7 +46,7 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string linearStripesTest()
+        public static string LinearStripesTest()
         {
             float[] fdata = new float[] { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(250, 150);
@@ -68,7 +66,7 @@ namespace Tests
             return chart.GetUrl();
         }
 
-        public static string singleLineAreaFillTest()
+        public static string SingleLineAreaFillTest()
         {
             float[] fdata = new float[] { 10, 30, 75, 40, 15 };
             LineChart chart = new LineChart(250, 150);
@@ -83,7 +81,7 @@ namespace Tests
             return chart.GetUrl();
         }
 
-        public static string multiLineAreaFillsTest()
+        public static string MultiLineAreaFillsTest()
         {
             float[] line1 = new float[] { 15, 45, 5, 30, 10 };
             float[] line2 = new float[] { 35, 65, 25, 50, 30 };

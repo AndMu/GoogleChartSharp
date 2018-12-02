@@ -1,9 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleChartSharp", "GoogleChartSharp\GoogleChartSharp.csproj", "{7BAB046F-5A77-4DD6-B115-8A575634CA91}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wikiled.Google.Chart", "GoogleChartSharp\Wikiled.Google.Chart.csproj", "{2CB16B6C-35A1-4578-889E-D78F8F9A5002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{272A07A4-70A0-484D-9422-A7BF2C1C8854}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wikiled.Google.Charts.TestApp", "Tests\Wikiled.Google.Charts.TestApp.csproj", "{7A9D4B9A-1C1B-4A03-B619-38B5EE660F1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,16 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7BAB046F-5A77-4DD6-B115-8A575634CA91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7BAB046F-5A77-4DD6-B115-8A575634CA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7BAB046F-5A77-4DD6-B115-8A575634CA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7BAB046F-5A77-4DD6-B115-8A575634CA91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{272A07A4-70A0-484D-9422-A7BF2C1C8854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{272A07A4-70A0-484D-9422-A7BF2C1C8854}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{272A07A4-70A0-484D-9422-A7BF2C1C8854}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{272A07A4-70A0-484D-9422-A7BF2C1C8854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB16B6C-35A1-4578-889E-D78F8F9A5002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB16B6C-35A1-4578-889E-D78F8F9A5002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB16B6C-35A1-4578-889E-D78F8F9A5002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB16B6C-35A1-4578-889E-D78F8F9A5002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A9D4B9A-1C1B-4A03-B619-38B5EE660F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A9D4B9A-1C1B-4A03-B619-38B5EE660F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A9D4B9A-1C1B-4A03-B619-38B5EE660F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A9D4B9A-1C1B-4A03-B619-38B5EE660F1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8FD56A52-D1AA-4EE5-93C4-720C511FBE13}
 	EndGlobalSection
 EndGlobal

@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     /// <summary>
     /// Base type for all charts.
     /// </summary>
     public abstract class Chart
     {
-        private const string API_BASE = "http://chart.apis.google.com/chart?";
-        internal Queue<string> urlElements = new Queue<string>();
+        private const string ApiBase = "http://chart.apis.google.com/chart?";
+        internal Queue<string> UrlElements = new Queue<string>();
 
         /// <summary>
         /// Create a chart
@@ -206,7 +205,7 @@ namespace GoogleChartSharp
         /// <param name="yAxisStepSize">Space between y-axis grid lines in relation to axis range.</param>
         public void SetGrid(float xAxisStepSize, float yAxisStepSize)
         {
-            ChartType chartType = getChartType();
+            ChartType chartType = GetChartType();
             if (!(chartType == ChartType.LineChart || chartType == ChartType.ScatterPlot))
             {
                 throw new InvalidFeatureForChartTypeException();
@@ -228,7 +227,7 @@ namespace GoogleChartSharp
         /// <param name="lengthBlankSegment">Length of each blank segment in a grid line</param>
         public void SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment)
         {
-            ChartType chartType = getChartType();
+            ChartType chartType = GetChartType();
             if (!(chartType == ChartType.LineChart || chartType == ChartType.ScatterPlot))
             {
                 throw new InvalidFeatureForChartTypeException();
@@ -241,7 +240,7 @@ namespace GoogleChartSharp
             this.gridSet = true;
         }
 
-        private string getGridUrlElement()
+        private string GetGridUrlElement()
         {
             if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
             {
@@ -289,7 +288,7 @@ namespace GoogleChartSharp
             this.rangeMarkers.Add(rangeMarker);
         }
 
-        private string getFillAreasUrlElement()
+        private string GetFillAreasUrlElement()
         {
             string s = string.Empty;
             foreach (FillArea fillArea in fillAreas)
@@ -299,7 +298,7 @@ namespace GoogleChartSharp
             return s.TrimEnd("|".ToCharArray());
         }
 
-        private string getShapeMarkersUrlElement()
+        private string GetShapeMarkersUrlElement()
         {
             string s = string.Empty;
             foreach (ShapeMarker shapeMarker in shapeMarkers)
@@ -309,7 +308,7 @@ namespace GoogleChartSharp
             return s.TrimEnd("|".ToCharArray());
         }
 
-        private string getRangeMarkersUrlElement()
+        private string GetRangeMarkersUrlElement()
         {
             string s = string.Empty;
             foreach (RangeMarker rangeMarker in rangeMarkers)
@@ -354,35 +353,35 @@ namespace GoogleChartSharp
         /// <returns></returns>
         public string GetUrl()
         {
-            collectUrlElements();
-            return generateUrlString();
+            CollectUrlElements();
+            return GenerateUrlString();
         }
 
         /// <summary>
         /// Returns the api chart identifier for the chart
         /// </summary>
         /// <returns></returns>
-        protected abstract string urlChartType();
-        protected abstract ChartType getChartType();
+        protected abstract string UrlChartType();
+        protected abstract ChartType GetChartType();
 
         /// <summary>
         /// Collect all the elements that will be used in the chart url
         /// </summary>
-        protected virtual void collectUrlElements()
+        protected virtual void CollectUrlElements()
         {
-            urlElements.Clear();
-            urlElements.Enqueue(String.Format("cht={0}", this.urlChartType()));
-            urlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
-            urlElements.Enqueue(this.data);
+            UrlElements.Clear();
+            UrlElements.Enqueue(String.Format("cht={0}", this.UrlChartType()));
+            UrlElements.Enqueue(String.Format("chs={0}x{1}", this.width, this.height));
+            UrlElements.Enqueue(this.data);
 
             // chart title
             if (title != null)
             {
-                urlElements.Enqueue(String.Format("chtt={0}", this.title));
+                UrlElements.Enqueue(String.Format("chtt={0}", this.title));
             }
             if (titleColor != null)
             {
-                urlElements.Enqueue(String.Format("chts={0}", this.titleColor));
+                UrlElements.Enqueue(String.Format("chts={0}", this.titleColor));
             }
 
             // dataset colors
@@ -393,7 +392,7 @@ namespace GoogleChartSharp
                 {
                     s += color + ",";
                 }
-                urlElements.Enqueue(s.TrimEnd(",".ToCharArray()));
+                UrlElements.Enqueue(s.TrimEnd(",".ToCharArray()));
             }
 
             // Fills
@@ -421,7 +420,7 @@ namespace GoogleChartSharp
             }
             if (solidFills.Count > 0 || linearGradientFills.Count > 0 || linearStripesFills.Count > 0)
             {
-                urlElements.Enqueue(fillsString.TrimEnd("|".ToCharArray()));
+                UrlElements.Enqueue(fillsString.TrimEnd("|".ToCharArray()));
             }
 
             // Legends
@@ -432,7 +431,7 @@ namespace GoogleChartSharp
                 {
                     s += str + "|";
                 }
-                urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+                UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
 
             // Axes
@@ -447,14 +446,14 @@ namespace GoogleChartSharp
                 int axisIndex = 0;
                 foreach (ChartAxis axis in axes)
                 {
-                    axisTypes += axis.urlAxisType() + ",";
-                    axisLabels += axisIndex.ToString() + ":" + axis.urlLabels();
-                    string labelPositions = axis.urlLabelPositions();
+                    axisTypes += axis.UrlAxisType() + ",";
+                    axisLabels += axisIndex.ToString() + ":" + axis.UrlLabels();
+                    string labelPositions = axis.UrlLabelPositions();
                     if (! String.IsNullOrEmpty(labelPositions))
                     {
                         axisLabelPositions += axisIndex.ToString() + "," + labelPositions + "|";
                     }
-                    string axisRangeStr = axis.urlRange();
+                    string axisRangeStr = axis.UrlRange();
                     if (!String.IsNullOrEmpty(axisRangeStr))
                     {
                         axisRange += axisIndex.ToString() + "," + axisRangeStr + "|";
@@ -472,49 +471,49 @@ namespace GoogleChartSharp
                 axisRange = axisRange.TrimEnd("|".ToCharArray());
                 axisStyle = axisStyle.TrimEnd("|".ToCharArray());
 
-                urlElements.Enqueue(axisTypes);
-                urlElements.Enqueue(axisLabels);
-                urlElements.Enqueue(axisLabelPositions);
-                urlElements.Enqueue(axisRange);
-                urlElements.Enqueue(axisStyle);
+                UrlElements.Enqueue(axisTypes);
+                UrlElements.Enqueue(axisLabels);
+                UrlElements.Enqueue(axisLabelPositions);
+                UrlElements.Enqueue(axisRange);
+                UrlElements.Enqueue(axisStyle);
             }
 
             // Grid
             if (gridSet)
             {
-                urlElements.Enqueue(getGridUrlElement());
+                UrlElements.Enqueue(GetGridUrlElement());
             }
             
             // Markers
             string markersString = "chm=";
             if (shapeMarkers.Count > 0)
             {
-                markersString += getShapeMarkersUrlElement() + "|";
+                markersString += GetShapeMarkersUrlElement() + "|";
             }
             if (rangeMarkers.Count > 0)
             {
-                markersString += getRangeMarkersUrlElement() + "|";
+                markersString += GetRangeMarkersUrlElement() + "|";
             }
             if (fillAreas.Count > 0)
             {
-                markersString += getFillAreasUrlElement() + "|";
+                markersString += GetFillAreasUrlElement() + "|";
             }
             if (shapeMarkers.Count > 0 || rangeMarkers.Count > 0 || fillAreas.Count > 0)
             {
-                urlElements.Enqueue(markersString.TrimEnd("|".ToCharArray()));
+                UrlElements.Enqueue(markersString.TrimEnd("|".ToCharArray()));
             }
         }
 
-        private string generateUrlString()
+        private string GenerateUrlString()
         {
             string url = string.Empty;
 
-            url += Chart.API_BASE;
-            url += urlElements.Dequeue();
+            url += Chart.ApiBase;
+            url += UrlElements.Dequeue();
 
-            while (urlElements.Count > 0)
+            while (UrlElements.Count > 0)
             {
-                url += "&" + urlElements.Dequeue();
+                url += "&" + UrlElements.Dequeue();
             }
 
             return url;

@@ -1,25 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
+using Wikiled.Google.Chart;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
     class Examples
     {
-        public static string superSimple()
+        public static string SuperSimple()
         {
-            int[] data = new int[] { 0, 10, 20, 30, 40 };
+            int[] data = new[] { 0, 10, 20, 30, 40 };
             LineChart chart = new LineChart(150, 150);
             chart.SetData(data);
             return chart.GetUrl();
         }
 
-        public static string simpleAxis()
+        public static string SimpleAxis()
         {
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
 
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(bottomAxis);
@@ -27,16 +24,16 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string axisLabels()
+        public static string AxisLabels()
         {
-            ChartAxis leftAxis = new ChartAxis(ChartAxisType.Left, new string[] { "one", "two", "three" });
+            ChartAxis leftAxis = new ChartAxis(ChartAxisType.Left, new[] { "one", "two", "three" });
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
             bottomAxis.AddLabel(new ChartAxisLabel("a", 0));
             bottomAxis.AddLabel(new ChartAxisLabel("b", 10));
             bottomAxis.AddLabel(new ChartAxisLabel("c", 50));
             bottomAxis.AddLabel(new ChartAxisLabel("d", 100));
 
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(leftAxis);
@@ -45,12 +42,12 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string axisRange()
+        public static string AxisRange()
         {
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
             bottomAxis.SetRange(0, 50);
 
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(bottomAxis);
@@ -58,13 +55,13 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string stackingAxes()
+        public static string StackingAxes()
         {
             ChartAxis bottomAxis = new ChartAxis(ChartAxisType.Bottom);
             ChartAxis bottomAxis2 = new ChartAxis(ChartAxisType.Bottom);
             bottomAxis2.SetRange(0, 50);
 
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
             LineChart lineChart = new LineChart(150, 150);
 
             lineChart.AddAxis(bottomAxis);
@@ -74,11 +71,11 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string xkcd()
+        public static string Xkcd()
         {
             float[] data = new float[] {35, 30, 26, 22, 17,  5, 96,  5,  4,  3,  2,  2,  1,  1};
 
-            string[] axisLabels = new string[] {".00", ".02", ".04", ".06", ".08", ".10",
+            string[] axisLabels = new[] {".00", ".02", ".04", ".06", ".08", ".10",
                                                 ".12", ".14", ".16", ".18", ".20", ".22",
                                                 ".24", ".26"};
 

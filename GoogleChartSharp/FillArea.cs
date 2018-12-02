@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     /// <summary>
     /// Fill the area between / under lines

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     /// <summary>
     /// Specifies how the line chart handles datasets
@@ -56,7 +54,7 @@ namespace GoogleChartSharp
             this.lineChartType = lineChartType;
         }
 
-        protected override string urlChartType()
+        protected override string UrlChartType()
         {
             if (this.lineChartType == LineChartType.MultiDataSet)
             {
@@ -79,9 +77,9 @@ namespace GoogleChartSharp
             lineStyles.Add(lineStyle);
         }
 
-        protected override void collectUrlElements()
+        protected override void CollectUrlElements()
         {
-            base.collectUrlElements();
+            base.CollectUrlElements();
             if (lineStyles.Count > 0)
             {
                 string s = "chls=";
@@ -91,11 +89,11 @@ namespace GoogleChartSharp
                     s += lineStyle.LengthOfSegment.ToString() + ",";
                     s += lineStyle.LengthOfBlankSegment.ToString() + "|";
                 }
-                urlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
+                UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
         }
 
-        protected override ChartType getChartType()
+        protected override ChartType GetChartType()
         {
             return ChartType.LineChart;
         }

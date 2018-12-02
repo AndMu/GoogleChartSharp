@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     public class ScatterPlot : Chart
     {
@@ -17,12 +13,12 @@ namespace GoogleChartSharp
 
         }
 
-        protected override string urlChartType()
+        protected override string UrlChartType()
         {
             return "s";
         }
 
-        protected override ChartType getChartType()
+        protected override ChartType GetChartType()
         {
             return ChartType.ScatterPlot;
         }

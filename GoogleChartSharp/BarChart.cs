@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     /// <summary>
     /// The orientation of the bars.
@@ -82,7 +80,7 @@ namespace GoogleChartSharp
         /// Return the chart identifier used in the chart url.
         /// </summary>
         /// <returns></returns>
-        protected override string urlChartType()
+        protected override string UrlChartType()
         {
             char orientationChar = this.orientation == BarChartOrientation.Horizontal ? 'h' : 'v';
             char styleChar = this.style == BarChartStyle.Stacked ? 's' : 'g';
@@ -93,16 +91,16 @@ namespace GoogleChartSharp
         /// <summary>
         /// Collect all the elements that will make up the chart url.
         /// </summary>
-        protected override void collectUrlElements()
+        protected override void CollectUrlElements()
         {
-            base.collectUrlElements();
+            base.CollectUrlElements();
             if (this.barWidth != 0)
             {
-                base.urlElements.Enqueue(String.Format("chbh={0}", this.barWidth));
+                base.UrlElements.Enqueue(String.Format("chbh={0}", this.barWidth));
             }
             if (this.zeroLine != 0)
             {
-                base.urlElements.Enqueue(String.Format("chp={0}", this.zeroLine));
+                base.UrlElements.Enqueue(String.Format("chp={0}", this.zeroLine));
             }
         }
 
@@ -110,7 +108,7 @@ namespace GoogleChartSharp
         /// Return the chart type for this chart
         /// </summary>
         /// <returns></returns>
-        protected override ChartType getChartType()
+        protected override ChartType GetChartType()
         {
             return ChartType.BarChart;
         }

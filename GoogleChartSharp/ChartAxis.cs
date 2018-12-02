@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     /// <summary>
     /// Axis label alignment. By default: x-axis labels are centered, left y-axis 
@@ -152,7 +150,7 @@ namespace GoogleChartSharp
             return result.TrimEnd(",".ToCharArray());
         }
 
-        internal string urlAxisType()
+        internal string UrlAxisType()
         {
             switch (axisType)
             {
@@ -172,7 +170,7 @@ namespace GoogleChartSharp
             return null;
         }
 
-        internal string urlLabels()
+        internal string UrlLabels()
         {
             string result = "|";
             foreach (ChartAxisLabel label in axisLabels)
@@ -182,7 +180,7 @@ namespace GoogleChartSharp
             return result;
         }
 
-        internal string urlLabelPositions()
+        internal string UrlLabelPositions()
         {
             string result = string.Empty;
             foreach (ChartAxisLabel axisLabel in axisLabels)
@@ -196,7 +194,7 @@ namespace GoogleChartSharp
             return result.TrimEnd(",".ToCharArray());
         }
 
-        internal string urlRange()
+        internal string UrlRange()
         {
             if (rangeSet)
             {

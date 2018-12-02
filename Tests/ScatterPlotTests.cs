@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
+using Wikiled.Google.Chart;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
     class ScatterPlotTests
     {
-        public static string scatterPlotTest()
+        public static string ScatterPlotTest()
         {
             int[] xData = { 10, 20, 30, 40, 50 };
             int[] yData = { 10, 20, 30, 40, 50 };

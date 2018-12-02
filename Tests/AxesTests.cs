@@ -1,16 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
+using Wikiled.Google.Chart;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
-    class AxesTests
+    public class AxesTests
     {
-        public static string allBasicAxesTest()
+        public static string AllBasicAxesTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new int[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -27,10 +25,10 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string axesLabelsTest()
+        public static string AxesLabelsTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new int[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -39,8 +37,8 @@ namespace Tests
             LineChart lineChart = new LineChart(250, 150);
             lineChart.SetTitle("Axis Labels Test", "0000FF", 14);
             lineChart.SetData(dataset);
-            lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom, new string[] { "b", "o", "t", "t", "o", "m" }));
-            lineChart.AddAxis(new ChartAxis(ChartAxisType.Left, new string[] { "l", "e", "f", "t" }));
+            lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom, new[] { "b", "o", "t", "t", "o", "m" }));
+            lineChart.AddAxis(new ChartAxis(ChartAxisType.Left, new[] { "l", "e", "f", "t" }));
 
             ChartAxis rightAxis = new ChartAxis(ChartAxisType.Right);
             rightAxis.AddLabel(new ChartAxisLabel("r"));
@@ -59,10 +57,10 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string axesRangeTest()
+        public static string AxesRangeTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new int[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -91,10 +89,10 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string axesStyleTest()
+        public static string AxesStyleTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new int[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);
@@ -125,10 +123,10 @@ namespace Tests
             return lineChart.GetUrl();
         }
 
-        public static string stackedAxesTest()
+        public static string StackedAxesTest()
         {
-            int[] line1 = new int[] { 5, 10, 50, 34, 10, 25 };
-            int[] line2 = new int[] { 15, 20, 60, 44, 20, 35 };
+            int[] line1 = new[] { 5, 10, 50, 34, 10, 25 };
+            int[] line2 = new[] { 15, 20, 60, 44, 20, 35 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(line1);

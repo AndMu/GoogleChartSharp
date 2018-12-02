@@ -1,16 +1,14 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using GoogleChartSharp;
+using Wikiled.Google.Chart;
 
-namespace Tests
+namespace Wikiled.Google.Charts.TestApp
 {
-    class BarChartTests
+    public class BarChartTests
     {
-        public static string horizontalStackedTest()
+        public static string HorizontalStackedTest()
         {
-            int[] data1 = new int[] { 10, 5, 20, 15 };
-            int[] data2 = new int[] { 10, 10, 10, 10 };
+            int[] data1 = new[] { 10, 5, 20, 15 };
+            int[] data2 = new[] { 10, 10, 10, 10 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -22,15 +20,15 @@ namespace Tests
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
 
             return barChart.GetUrl();
         }
 
-        public static string verticalStackedTest()
+        public static string VerticalStackedTest()
         {
-            int[] data1 = new int[] { 10, 5, 20, 15 };
-            int[] data2 = new int[] { 10, 10, 10, 10 };
+            int[] data1 = new[] { 10, 5, 20, 15 };
+            int[] data2 = new[] { 10, 10, 10, 10 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -42,15 +40,15 @@ namespace Tests
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
 
             return barChart.GetUrl();
         }
 
-        public static string horizontalGroupedTest()
+        public static string HorizontalGroupedTest()
         {
-            int[] data1 = new int[] { 10, 5, 20 };
-            int[] data2 = new int[] { 5, 10, 20 };
+            int[] data1 = new[] { 10, 5, 20 };
+            int[] data2 = new[] { 5, 10, 20 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -62,16 +60,16 @@ namespace Tests
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
             barChart.SetBarWidth(10);
 
             return barChart.GetUrl();
         }
 
-        public static string verticalGroupedTest()
+        public static string VerticalGroupedTest()
         {
-            int[] data1 = new int[] { 10, 5, 20 };
-            int[] data2 = new int[] { 30, 35, 15 };
+            int[] data1 = new[] { 10, 5, 20 };
+            int[] data2 = new[] { 30, 35, 15 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -83,15 +81,15 @@ namespace Tests
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
 
             return barChart.GetUrl();
         }
 
-        public static string zeroLineTest()
+        public static string ZeroLineTest()
         {
-            int[] data1 = new int[] { 10, 5, 20 };
-            int[] data2 = new int[] { 30, 35, 20 };
+            int[] data1 = new[] { 10, 5, 20 };
+            int[] data2 = new[] { 30, 35, 20 };
 
             List<int[]> dataset = new List<int[]>();
             dataset.Add(data1);
@@ -104,7 +102,7 @@ namespace Tests
             barChart.SetZeroLine(0.25);
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new string[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
 
             return barChart.GetUrl();
         }

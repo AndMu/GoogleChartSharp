@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     public class VennDiagram : Chart
     {
@@ -16,12 +12,12 @@ namespace GoogleChartSharp
         {
         }
 
-        protected override string urlChartType()
+        protected override string UrlChartType()
         {
             return "v";
         }
 
-        protected override ChartType getChartType()
+        protected override ChartType GetChartType()
         {
             return ChartType.VennDiagram;
         }

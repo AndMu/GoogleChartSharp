@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace GoogleChartSharp
+namespace Wikiled.Google.Chart
 {
     public class LinearGradientFill
     {
@@ -49,7 +48,7 @@ namespace GoogleChartSharp
             this.colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
         }
 
-        internal string getTypeUrlChar()
+        internal string GetTypeUrlChar()
         {
             switch (fillTarget)
             {
@@ -64,7 +63,7 @@ namespace GoogleChartSharp
         internal String GetUrlString()
         {
             string s = string.Empty;
-            s += getTypeUrlChar() + ",";
+            s += GetTypeUrlChar() + ",";
             s += "lg,";
             s += angle.ToString() + ",";
 
