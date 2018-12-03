@@ -8,7 +8,7 @@ namespace Wikiled.Google.Chart
     /// </summary>
     public abstract class Chart : IChart
     {
-        private const string ApiBase = "http://chart.apis.google.com/chart?";
+        private string ApiBase = "http://chart.apis.google.com/chart?";
 
         private readonly List<ChartAxis> axes = new List<ChartAxis>();
 
@@ -52,6 +52,8 @@ namespace Wikiled.Google.Chart
 
         internal Queue<string> UrlElements { get; } = new Queue<string>();
 
+        public int DataSize { get; private set; }
+
         /// <summary>
         ///     Chart width in pixels.
         /// </summary>
@@ -69,6 +71,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(int[] data)
         {
             this.data = ChartData.Encode(data);
+            DataSize = 1;
             return this;
         }
 
@@ -79,6 +82,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(ICollection<int[]> data)
         {
             this.data = ChartData.Encode(data);
+            DataSize = data.Count;
             return this;
         }
 
@@ -89,6 +93,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(float[] data)
         {
             this.data = ChartData.Encode(data);
+            DataSize = 1;
             return this;
         }
 
@@ -99,6 +104,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(ICollection<float[]> data)
         {
             this.data = ChartData.Encode(data);
+            DataSize = data.Count;
             return this;
         }
 
@@ -109,6 +115,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(long[] data)
         {
             this.data = ChartData.Encode(data);
+            DataSize = 1;
             return this;
         }
 
@@ -119,6 +126,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(ICollection<long[]> data)
         {
             this.data = ChartData.Encode(data);
+            DataSize = data.Count;
             return this;
         }
 
