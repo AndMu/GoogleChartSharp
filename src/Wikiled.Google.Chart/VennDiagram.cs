@@ -3,7 +3,7 @@ namespace Wikiled.Google.Chart
     public class VennDiagram : Chart
     {
         /// <summary>
-        /// Create a venn diagram
+        ///     Create a venn diagram
         /// </summary>
         /// <param name="width">width in pixels</param>
         /// <param name="height">height in pixels</param>

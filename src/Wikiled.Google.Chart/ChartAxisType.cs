@@ -1,27 +1,27 @@
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Chart axis locations
+    ///     Chart axis locations
     /// </summary>
     public enum ChartAxisType
     {
         /// <summary>
-        /// Bottom x-axis
+        ///     Bottom x-axis
         /// </summary>
         Bottom,
 
         /// <summary>
-        /// Top x-axis
+        ///     Top x-axis
         /// </summary>
         Top,
 
         /// <summary>
-        /// Left y-axis
+        ///     Left y-axis
         /// </summary>
         Left,
 
         /// <summary>
-        /// Right y-axis
+        ///     Right y-axis
         /// </summary>
         Right
     }

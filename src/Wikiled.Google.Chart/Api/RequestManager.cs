@@ -14,7 +14,7 @@ namespace Wikiled.Google.Chart.Api
                 throw new ArgumentNullException(nameof(chart));
             }
 
-            using (HttpClient client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 var stream = await client.GetStreamAsync(new Uri(chart.GetUrl())).ConfigureAwait(false);
                 using (var memoryStream = new MemoryStream())

@@ -6,18 +6,17 @@ namespace Wikiled.Google.Chart
         private string[] pieChartLabels;
 
         /// <summary>
-        /// Create a 2D pie chart
+        ///     Create a 2D pie chart
         /// </summary>
         /// <param name="width">width in pixels</param>
         /// <param name="height">height in pixels</param>
         public PieChart(int width, int height)
             : base(width, height)
         {
-
         }
 
         /// <summary>
-        /// Create a pie chart of specified type
+        ///     Create a pie chart of specified type
         /// </summary>
         /// <param name="width">width in pixels</param>
         /// <param name="height">height in pixels</param>
@@ -43,26 +42,27 @@ namespace Wikiled.Google.Chart
             base.CollectUrlElements();
             if (pieChartLabels != null)
             {
-                string s = "chl=";
-                foreach (string label in pieChartLabels)
+                var s = "chl=";
+                foreach (var label in pieChartLabels)
                 {
                     s += label + "|";
                 }
+
                 UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
         }
 
         /// <summary>
-        /// Legend is not supported on Pie Charts
+        ///     Legend is not supported on Pie Charts
         /// </summary>
         /// <param name="strs"></param>
-        public override void SetLegend(string[] strs)
+        public override IChart SetLegend(string[] strs)
         {
             throw new InvalidFeatureForChartTypeException();
         }
 
         /// <summary>
-        /// Set labels for the Pie Chart slices
+        ///     Set labels for the Pie Chart slices
         /// </summary>
         /// <param name="labels">strings that will be used as label text</param>
         public void SetPieChartLabels(string[] labels)

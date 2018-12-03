@@ -1,19 +1,17 @@
-using System;
-
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Bar Chart
+    ///     Bar Chart
     /// </summary>
     public class BarChart : Chart
     {
         private readonly BarChartOrientation orientation;
         private readonly BarChartStyle style;
         private int barWidth;
-        private double zeroLine = 0;
+        private double zeroLine;
 
         /// <summary>
-        /// Create a bar chart
+        ///     Create a bar chart
         /// </summary>
         /// <param name="width">Width in pixels</param>
         /// <param name="height">Height in pixels</param>
@@ -27,7 +25,7 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// Set the width of the individual bars
+        ///     Set the width of the individual bars
         /// </summary>
         /// <param name="width">Width in pixels</param>
         public void SetBarWidth(int width)
@@ -36,7 +34,7 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// Specify a zero line
+        ///     Specify a zero line
         /// </summary>
         /// <param name="zeroLine"></param>
         public void SetZeroLine(double zeroLine)
@@ -45,19 +43,19 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// Return the chart identifier used in the chart url.
+        ///     Return the chart identifier used in the chart url.
         /// </summary>
         /// <returns></returns>
         protected override string UrlChartType()
         {
-            char orientationChar = orientation == BarChartOrientation.Horizontal ? 'h' : 'v';
-            char styleChar = style == BarChartStyle.Stacked ? 's' : 'g';
+            var orientationChar = orientation == BarChartOrientation.Horizontal ? 'h' : 'v';
+            var styleChar = style == BarChartStyle.Stacked ? 's' : 'g';
 
             return $"b{orientationChar}{styleChar}";
         }
 
         /// <summary>
-        /// Collect all the elements that will make up the chart url.
+        ///     Collect all the elements that will make up the chart url.
         /// </summary>
         protected override void CollectUrlElements()
         {
@@ -74,7 +72,7 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// Return the chart type for this chart
+        ///     Return the chart type for this chart
         /// </summary>
         /// <returns></returns>
         protected override ChartType GetChartType()

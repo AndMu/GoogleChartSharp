@@ -1,23 +1,13 @@
-using System;
 using System.Collections.Generic;
 
 namespace Wikiled.Google.Chart
 {
     public class LinearGradientFill
     {
-        /// <summary>
-        /// The area that will be filled.
-        /// </summary>
-        public ChartFillTarget FillTarget { get; set; }
-        /// <summary>
-        /// specifies the angle of the gradient between 0 (horizontal) and 90 (vertical)
-        /// </summary>
-        public int Angle { get; set; }
-
         private readonly List<ColorOffsetPair> colorOffsetPairs = new List<ColorOffsetPair>();
 
         /// <summary>
-        /// Create a linear gradient
+        ///     Create a linear gradient
         /// </summary>
         /// <param name="fillTarget">area to be filled</param>
         /// <param name="angle">specifies the angle of the gradient between 0 (horizontal) and 90 (vertical)</param>
@@ -28,10 +18,23 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// Add a color/offset pair to the linear gradient
+        ///     The area that will be filled.
+        /// </summary>
+        public ChartFillTarget FillTarget { get; set; }
+
+        /// <summary>
+        ///     specifies the angle of the gradient between 0 (horizontal) and 90 (vertical)
+        /// </summary>
+        public int Angle { get; set; }
+
+        /// <summary>
+        ///     Add a color/offset pair to the linear gradient
         /// </summary>
         /// <param name="color">RRGGBB format hexadecimal number</param>
-        /// <param name="offset">specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the left-most</param>
+        /// <param name="offset">
+        ///     specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the
+        ///     left-most
+        /// </param>
         public void AddColorOffsetPair(string color, double offset)
         {
             colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
@@ -46,17 +49,18 @@ namespace Wikiled.Google.Chart
                 case ChartFillTarget.Background:
                     return "bg";
             }
+
             return null;
         }
 
-        internal String GetUrlString()
+        internal string GetUrlString()
         {
-            string s = string.Empty;
+            var s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "lg,";
-            s += Angle.ToString() + ",";
+            s += Angle + ",";
 
-            foreach (ColorOffsetPair colorOffsetPair in colorOffsetPairs)
+            foreach (var colorOffsetPair in colorOffsetPairs)
             {
                 s += colorOffsetPair.Color + ",";
                 s += colorOffsetPair.Offset + ",";

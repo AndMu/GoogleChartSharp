@@ -4,16 +4,43 @@ using System.Collections.Generic;
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Base type for all charts.
+    ///     Base type for all charts.
     /// </summary>
     public abstract class Chart : IChart
     {
         private const string ApiBase = "http://chart.apis.google.com/chart?";
 
-        internal Queue<string> UrlElements { get; } = new Queue<string>();
+        private readonly List<ChartAxis> axes = new List<ChartAxis>();
+
+        private readonly List<FillArea> fillAreas = new List<FillArea>();
+
+        private readonly List<string> legendStrings = new List<string>();
+
+        private readonly List<LinearGradientFill> linearGradientFills = new List<LinearGradientFill>();
+
+        private readonly List<LinearStripesFill> linearStripesFills = new List<LinearStripesFill>();
+
+        private readonly List<RangeMarker> rangeMarkers = new List<RangeMarker>();
+
+        private readonly List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
+
+        private readonly List<SolidFill> solidFills = new List<SolidFill>();
+
+        private string data;
+
+        private string[] datasetColors;
+        private float gridLengthBlankSegment = -1;
+        private float gridLengthLineSegment = -1;
+
+        private bool gridSet;
+        private float gridXAxisStepSize = -1;
+        private float gridYAxisStepSize = -1;
+
+        private string title;
+        private string titleColor;
 
         /// <summary>
-        /// Create a chart
+        ///     Create a chart
         /// </summary>
         /// <param name="width">width in pixels</param>
         /// <param name="height">height in pixels</param>
@@ -23,169 +50,165 @@ namespace Wikiled.Google.Chart
             Height = height;
         }
 
+        internal Queue<string> UrlElements { get; } = new Queue<string>();
+
         /// <summary>
-        /// Chart width in pixels.
+        ///     Chart width in pixels.
         /// </summary>
         public int Width { get; set; }
 
         /// <summary>
-        /// Chart height in pixels.
+        ///     Chart height in pixels.
         /// </summary>
         public int Height { get; set; }
 
-        private string data;
-
         /// <summary>
-        /// Set chart to use single integer dataset
+        ///     Set chart to use single integer dataset
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(int[] data)
+        public IChart SetData(int[] data)
         {
             this.data = ChartData.Encode(data);
+            return this;
         }
 
         /// <summary>
-        /// Set chart to use integer dataset collection
+        ///     Set chart to use integer dataset collection
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(ICollection<int[]> data)
+        public IChart SetData(ICollection<int[]> data)
         {
             this.data = ChartData.Encode(data);
+            return this;
         }
 
         /// <summary>
-        /// Set chart to use single float dataset
+        ///     Set chart to use single float dataset
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(float[] data)
+        public IChart SetData(float[] data)
         {
             this.data = ChartData.Encode(data);
+            return this;
         }
 
         /// <summary>
-        /// Set chart to use float dataset collection
+        ///     Set chart to use float dataset collection
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(ICollection<float[]> data)
+        public IChart SetData(ICollection<float[]> data)
         {
             this.data = ChartData.Encode(data);
+            return this;
         }
 
-		/// <summary>
-		/// Set chart to use single long dataset
-		/// </summary>
-		/// <param name="data"></param>
-		public void SetData(long[] data)
-		{
-			this.data = ChartData.Encode(data);
-		}
-
-		/// <summary>
-		/// Set chart to use long dataset collection
-		/// </summary>
-		/// <param name="data"></param>
-		public void SetData(ICollection<long[]> data)
-		{
-			this.data = ChartData.Encode(data);
-		}
-
-        private string title;
-        private string titleColor;
+        /// <summary>
+        ///     Set chart to use single long dataset
+        /// </summary>
+        /// <param name="data"></param>
+        public IChart SetData(long[] data)
+        {
+            this.data = ChartData.Encode(data);
+            return this;
+        }
 
         /// <summary>
-        /// Set chart title using default color and font size
+        ///     Set chart to use long dataset collection
+        /// </summary>
+        /// <param name="data"></param>
+        public IChart SetData(ICollection<long[]> data)
+        {
+            this.data = ChartData.Encode(data);
+            return this;
+        }
+
+        /// <summary>
+        ///     Set chart title using default color and font size
         /// </summary>
         /// <param name="title">chart title text</param>
-        public void SetTitle(string title)
+        public IChart SetTitle(string title)
         {
-            string urlTitle = title.Replace(" ", "+");
+            var urlTitle = title.Replace(" ", "+");
             urlTitle = urlTitle.Replace(Environment.NewLine, "|");
             this.title = urlTitle;
+            return this;
         }
 
         /// <summary>
-        /// Set chart title using default font size
+        ///     Set chart title using default font size
         /// </summary>
         /// <param name="title">chart title text</param>
         /// <param name="color">chart title color an RRGGBB format hexadecimal number</param>
-        public void SetTitle(string title, string color)
+        public IChart SetTitle(string title, string color)
         {
             SetTitle(title);
             titleColor = color;
+            return this;
         }
 
         /// <summary>
-        /// Set chart title
+        ///     Set chart title
         /// </summary>
         /// <param name="title">chart title text</param>
         /// <param name="color">chart title color an RRGGBB format hexadecimal number</param>
         /// <param name="fontSize">chart title font size in pixels</param>
-        public void SetTitle(string title, string color, int fontSize)
+        public IChart SetTitle(string title, string color, int fontSize)
         {
             SetTitle(title);
             titleColor = color + "," + fontSize;
+            return this;
         }
 
-        private string[] datasetColors;
-
         /// <summary>
-        /// Set the color for each dataset, match colors to datasets by
-        /// specifying them in the same order the datasets were added to the
-        /// chart.
+        ///     Set the color for each dataset, match colors to datasets by
+        ///     specifying them in the same order the datasets were added to the
+        ///     chart.
         /// </summary>
         /// <param name="datasetColors">an array of RRGGBB format hexadecimal numbers</param>
-        public void SetDatasetColors(string[] datasetColors)
+        public IChart SetDatasetColors(string[] datasetColors)
         {
             this.datasetColors = datasetColors;
+            return this;
         }
 
-        readonly List<SolidFill> solidFills = new List<SolidFill>();
-
-        readonly List<LinearGradientFill> linearGradientFills = new List<LinearGradientFill>();
-
-        readonly List<LinearStripesFill> linearStripesFills = new List<LinearStripesFill>();
-
         /// <summary>
-        /// Add a solid fill to this chart.
+        ///     Add a solid fill to this chart.
         /// </summary>
         /// <param name="solidFill"></param>
-        public void AddSolidFill(SolidFill solidFill)
+        public IChart AddSolidFill(SolidFill solidFill)
         {
             solidFills.Add(solidFill);
+            return this;
         }
 
         /// <summary>
-        /// Add a linear gradient fill to this chart.
+        ///     Add a linear gradient fill to this chart.
         /// </summary>
         /// <param name="linearGradientFill"></param>
-        public void AddLinearGradientFill(LinearGradientFill linearGradientFill)
+        public IChart AddLinearGradientFill(LinearGradientFill linearGradientFill)
         {
             linearGradientFills.Add(linearGradientFill);
+            return this;
         }
 
         /// <summary>
-        /// Add a linear stripes fill to this chart.
+        ///     Add a linear stripes fill to this chart.
         /// </summary>
         /// <param name="linearStripesFill"></param>
-        public void AddLinearStripesFill(LinearStripesFill linearStripesFill)
+        public IChart AddLinearStripesFill(LinearStripesFill linearStripesFill)
         {
             linearStripesFills.Add(linearStripesFill);
+            return this;
         }
 
-        bool gridSet = false;
-        private float gridXAxisStepSize = -1;
-        private float gridYAxisStepSize = -1;
-        private float gridLengthLineSegment = -1;
-        private float gridLengthBlankSegment = -1;
-
         /// <summary>
-        /// Add a grid to the chart using default line segment and blank line segment length.
+        ///     Add a grid to the chart using default line segment and blank line segment length.
         /// </summary>
         /// <param name="xAxisStepSize">Space between x-axis grid lines in relation to axis range.</param>
         /// <param name="yAxisStepSize">Space between y-axis grid lines in relation to axis range.</param>
-        public void SetGrid(float xAxisStepSize, float yAxisStepSize)
+        public IChart SetGrid(float xAxisStepSize, float yAxisStepSize)
         {
-            ChartType chartType = GetChartType();
+            var chartType = GetChartType();
             if (!(chartType == ChartType.LineChart || chartType == ChartType.ScatterPlot))
             {
                 throw new InvalidFeatureForChartTypeException();
@@ -196,18 +219,19 @@ namespace Wikiled.Google.Chart
             gridLengthLineSegment = -1;
             gridLengthBlankSegment = -1;
             gridSet = true;
+            return this;
         }
 
         /// <summary>
-        /// Add a grid to the chart.
+        ///     Add a grid to the chart.
         /// </summary>
         /// <param name="xAxisStepSize">Space between x-axis grid lines in relation to axis range.</param>
         /// <param name="yAxisStepSize">Space between y-axis grid lines in relation to axis range.</param>
         /// <param name="lengthLineSegment">Length of each line segment in a grid line</param>
         /// <param name="lengthBlankSegment">Length of each blank segment in a grid line</param>
-        public void SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment)
+        public IChart SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment)
         {
-            ChartType chartType = GetChartType();
+            var chartType = GetChartType();
             if (!(chartType == ChartType.LineChart || chartType == ChartType.ScatterPlot))
             {
                 throw new InvalidFeatureForChartTypeException();
@@ -218,112 +242,65 @@ namespace Wikiled.Google.Chart
             gridLengthLineSegment = lengthLineSegment;
             gridLengthBlankSegment = lengthBlankSegment;
             gridSet = true;
+            return this;
         }
-
-        private string GetGridUrlElement()
-        {
-            if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
-            {
-                string s = $"chg={gridXAxisStepSize.ToString()},{gridYAxisStepSize.ToString()}";
-                if (gridLengthLineSegment != -1 && gridLengthBlankSegment != -1)
-                {
-                    s += "," + gridLengthLineSegment.ToString() + "," + gridLengthBlankSegment.ToString();
-                }
-                return s;
-            }
-            return null;
-        }
-
-        readonly List<ShapeMarker> shapeMarkers = new List<ShapeMarker>();
-
-        readonly List<RangeMarker> rangeMarkers = new List<RangeMarker>();
-
-        readonly List<FillArea> fillAreas = new List<FillArea>();
 
         /// <summary>
-        /// Add a fill area to the chart. Fill areas are fills between / under lines.
+        ///     Add a fill area to the chart. Fill areas are fills between / under lines.
         /// </summary>
         /// <param name="fillArea"></param>
-        public void AddFillArea(FillArea fillArea)
+        public IChart AddFillArea(FillArea fillArea)
         {
             fillAreas.Add(fillArea);
+            return this;
         }
 
         /// <summary>
-        /// Add a shape marker to the chart. Shape markers are used to call attention to a data point on the chart.
+        ///     Add a shape marker to the chart. Shape markers are used to call attention to a data point on the chart.
         /// </summary>
         /// <param name="shapeMarker"></param>
-        public void AddShapeMarker(ShapeMarker shapeMarker)
+        public IChart AddShapeMarker(ShapeMarker shapeMarker)
         {
             shapeMarkers.Add(shapeMarker);
+            return this;
         }
 
         /// <summary>
-        /// Add a range marker to the chart. Range markers are colored bands on the chart.
+        ///     Add a range marker to the chart. Range markers are colored bands on the chart.
         /// </summary>
         /// <param name="rangeMarker"></param>
-        public void AddRangeMarker(RangeMarker rangeMarker)
+        public IChart AddRangeMarker(RangeMarker rangeMarker)
         {
             rangeMarkers.Add(rangeMarker);
+            return this;
         }
-
-        private string GetFillAreasUrlElement()
-        {
-            string s = string.Empty;
-            foreach (FillArea fillArea in fillAreas)
-            {
-                s += fillArea.GetUrlString() + "|";
-            }
-            return s.TrimEnd("|".ToCharArray());
-        }
-
-        private string GetShapeMarkersUrlElement()
-        {
-            string s = string.Empty;
-            foreach (ShapeMarker shapeMarker in shapeMarkers)
-            {
-                s += shapeMarker.GetUrlString() + "|";
-            }
-            return s.TrimEnd("|".ToCharArray());
-        }
-
-        private string GetRangeMarkersUrlElement()
-        {
-            string s = string.Empty;
-            foreach (RangeMarker rangeMarker in rangeMarkers)
-            {
-                s += rangeMarker.GetUrlString() + "|";
-            }
-            return s.TrimEnd("|".ToCharArray());
-        }
-
-        readonly List<ChartAxis> axes = new List<ChartAxis>();
-
-        readonly List<string> legendStrings = new List<string>();
 
         /// <summary>
-        /// Set chart legend
+        ///     Set chart legend
         /// </summary>
         /// <param name="strs">legend labels</param>
-        public virtual void SetLegend(string[] strs)
+        public virtual IChart SetLegend(string[] strs)
         {
-            foreach (string s in strs)
+            foreach (var s in strs)
             {
                 legendStrings.Add(s);
             }
+
+            return this;
         }
 
         /// <summary>
-        /// Add an axis to the chart
+        ///     Add an axis to the chart
         /// </summary>
         /// <param name="axis"></param>
-        public void AddAxis(ChartAxis axis)
+        public IChart AddAxis(ChartAxis axis)
         {
             axes.Add(axis);
+            return this;
         }
 
         /// <summary>
-        /// Return the chart api url for this chart
+        ///     Return the chart api url for this chart
         /// </summary>
         /// <returns></returns>
         public string GetUrl()
@@ -332,15 +309,65 @@ namespace Wikiled.Google.Chart
             return GenerateUrlString();
         }
 
+        private string GetGridUrlElement()
+        {
+            if (gridXAxisStepSize != -1 && gridYAxisStepSize != -1)
+            {
+                var s = $"chg={gridXAxisStepSize.ToString()},{gridYAxisStepSize.ToString()}";
+                if (gridLengthLineSegment != -1 && gridLengthBlankSegment != -1)
+                {
+                    s += "," + gridLengthLineSegment + "," + gridLengthBlankSegment;
+                }
+
+                return s;
+            }
+
+            return null;
+        }
+
+        private string GetFillAreasUrlElement()
+        {
+            var s = string.Empty;
+            foreach (var fillArea in fillAreas)
+            {
+                s += fillArea.GetUrlString() + "|";
+            }
+
+            return s.TrimEnd("|".ToCharArray());
+        }
+
+        private string GetShapeMarkersUrlElement()
+        {
+            var s = string.Empty;
+            foreach (var shapeMarker in shapeMarkers)
+            {
+                s += shapeMarker.GetUrlString() + "|";
+            }
+
+            return s.TrimEnd("|".ToCharArray());
+        }
+
+        private string GetRangeMarkersUrlElement()
+        {
+            var s = string.Empty;
+            foreach (var rangeMarker in rangeMarkers)
+            {
+                s += rangeMarker.GetUrlString() + "|";
+            }
+
+            return s.TrimEnd("|".ToCharArray());
+        }
+
         /// <summary>
-        /// Returns the api chart identifier for the chart
+        ///     Returns the api chart identifier for the chart
         /// </summary>
         /// <returns></returns>
         protected abstract string UrlChartType();
+
         protected abstract ChartType GetChartType();
 
         /// <summary>
-        /// Collect all the elements that will be used in the chart url
+        ///     Collect all the elements that will be used in the chart url
         /// </summary>
         protected virtual void CollectUrlElements()
         {
@@ -354,6 +381,7 @@ namespace Wikiled.Google.Chart
             {
                 UrlElements.Enqueue($"chtt={title}");
             }
+
             if (titleColor != null)
             {
                 UrlElements.Enqueue($"chts={titleColor}");
@@ -362,37 +390,41 @@ namespace Wikiled.Google.Chart
             // dataset colors
             if (datasetColors != null)
             {
-                string s = "chco=";
-                foreach (string color in datasetColors)
+                var s = "chco=";
+                foreach (var color in datasetColors)
                 {
                     s += color + ",";
                 }
+
                 UrlElements.Enqueue(s.TrimEnd(",".ToCharArray()));
             }
 
             // Fills
-            string fillsString = "chf=";
+            var fillsString = "chf=";
             if (solidFills.Count > 0)
             {
-                foreach (SolidFill solidFill in solidFills)
+                foreach (var solidFill in solidFills)
                 {
                     fillsString += solidFill.GetUrlString() + "|";
                 }
             }
+
             if (linearGradientFills.Count > 0)
             {
-                foreach (LinearGradientFill linearGradient in linearGradientFills)
+                foreach (var linearGradient in linearGradientFills)
                 {
                     fillsString += linearGradient.GetUrlString() + "|";
                 }
             }
+
             if (linearStripesFills.Count > 0)
             {
-                foreach (LinearStripesFill linearStripesFill in linearStripesFills)
+                foreach (var linearStripesFill in linearStripesFills)
                 {
                     fillsString += linearStripesFill.GetUrlString() + "|";
                 }
             }
+
             if (solidFills.Count > 0 || linearGradientFills.Count > 0 || linearStripesFills.Count > 0)
             {
                 UrlElements.Enqueue(fillsString.TrimEnd("|".ToCharArray()));
@@ -401,45 +433,50 @@ namespace Wikiled.Google.Chart
             // Legends
             if (legendStrings.Count > 0)
             {
-                string s = "chdl=";
-                foreach (string str in legendStrings)
+                var s = "chdl=";
+                foreach (var str in legendStrings)
                 {
                     s += str + "|";
                 }
+
                 UrlElements.Enqueue(s.TrimEnd("|".ToCharArray()));
             }
 
             // Axes
             if (axes.Count > 0)
             {
-                string axisTypes = "chxt=";
-                string axisLabels = "chxl=";
-                string axisLabelPositions = "chxp=";
-                string axisRange = "chxr=";
-                string axisStyle = "chxs=";
+                var axisTypes = "chxt=";
+                var axisLabels = "chxl=";
+                var axisLabelPositions = "chxp=";
+                var axisRange = "chxr=";
+                var axisStyle = "chxs=";
 
-                int axisIndex = 0;
-                foreach (ChartAxis axis in axes)
+                var axisIndex = 0;
+                foreach (var axis in axes)
                 {
                     axisTypes += axis.UrlAxisType() + ",";
-                    axisLabels += axisIndex.ToString() + ":" + axis.UrlLabels();
-                    string labelPositions = axis.UrlLabelPositions();
-                    if (! String.IsNullOrEmpty(labelPositions))
+                    axisLabels += axisIndex + ":" + axis.UrlLabels();
+                    var labelPositions = axis.UrlLabelPositions();
+                    if (!string.IsNullOrEmpty(labelPositions))
                     {
-                        axisLabelPositions += axisIndex.ToString() + "," + labelPositions + "|";
+                        axisLabelPositions += axisIndex + "," + labelPositions + "|";
                     }
-                    string axisRangeStr = axis.UrlRange();
-                    if (!String.IsNullOrEmpty(axisRangeStr))
+
+                    var axisRangeStr = axis.UrlRange();
+                    if (!string.IsNullOrEmpty(axisRangeStr))
                     {
-                        axisRange += axisIndex.ToString() + "," + axisRangeStr + "|";
+                        axisRange += axisIndex + "," + axisRangeStr + "|";
                     }
-                    string axisStyleStr = axis.UrlAxisStyle();
-                    if (!String.IsNullOrEmpty(axisStyleStr))
+
+                    var axisStyleStr = axis.UrlAxisStyle();
+                    if (!string.IsNullOrEmpty(axisStyleStr))
                     {
-                        axisStyle += axisIndex.ToString() + "," + axisStyleStr + "|";
+                        axisStyle += axisIndex + "," + axisStyleStr + "|";
                     }
+
                     axisIndex++;
                 }
+
                 axisTypes = axisTypes.TrimEnd(",".ToCharArray());
                 axisLabels = axisLabels.TrimEnd("|".ToCharArray());
                 axisLabelPositions = axisLabelPositions.TrimEnd("|".ToCharArray());
@@ -458,21 +495,24 @@ namespace Wikiled.Google.Chart
             {
                 UrlElements.Enqueue(GetGridUrlElement());
             }
-            
+
             // Markers
-            string markersString = "chm=";
+            var markersString = "chm=";
             if (shapeMarkers.Count > 0)
             {
                 markersString += GetShapeMarkersUrlElement() + "|";
             }
+
             if (rangeMarkers.Count > 0)
             {
                 markersString += GetRangeMarkersUrlElement() + "|";
             }
+
             if (fillAreas.Count > 0)
             {
                 markersString += GetFillAreasUrlElement() + "|";
             }
+
             if (shapeMarkers.Count > 0 || rangeMarkers.Count > 0 || fillAreas.Count > 0)
             {
                 UrlElements.Enqueue(markersString.TrimEnd("|".ToCharArray()));
@@ -481,7 +521,7 @@ namespace Wikiled.Google.Chart
 
         private string GenerateUrlString()
         {
-            string url = string.Empty;
+            var url = string.Empty;
 
             url += ApiBase;
             url += UrlElements.Dequeue();
@@ -493,7 +533,5 @@ namespace Wikiled.Google.Chart
 
             return url;
         }
-
-        
     }
 }

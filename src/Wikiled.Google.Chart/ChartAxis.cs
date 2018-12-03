@@ -3,42 +3,27 @@ using System.Collections.Generic;
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Chart Axis
+    ///     Chart Axis
     /// </summary>
     public class ChartAxis
     {
-        readonly ChartAxisType axisType;
-
-        readonly List<ChartAxisLabel> axisLabels = new List<ChartAxisLabel>();
-        int upperBound;
-        int lowerBound;
-        bool rangeSet;
-
-        /// <summary>
-        /// an RRGGBB format hexadecimal number
-        /// </summary>
-        public string Color { get; set; }
+        private readonly List<ChartAxisLabel> axisLabels = new List<ChartAxisLabel>();
+        private readonly ChartAxisType axisType;
+        private int lowerBound;
+        private bool rangeSet;
+        private int upperBound;
 
         /// <summary>
-        /// optional if used this specifies the size in pixels
-        /// </summary>
-        public int FontSize { get; set; } = -1;
-
-        /// <summary>
-        /// By default: x-axis labels are centered, left y-axis labels are right aligned, right y-axis labels are left aligned
-        /// </summary>
-        public AxisAlignmentType Alignment { get; set; } = AxisAlignmentType.Unset;
-
-        /// <summary>
-        /// Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
+        ///     Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
         /// </summary>
         /// <param name="axisType">Axis position</param>
-        public ChartAxis(ChartAxisType axisType) : this(axisType, null)
+        public ChartAxis(ChartAxisType axisType)
+            : this(axisType, null)
         {
         }
 
         /// <summary>
-        /// Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
+        ///     Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
         /// </summary>
         /// <param name="axisType">Axis position</param>
         /// <param name="labels">These labels will be added to the axis without position information</param>
@@ -48,7 +33,7 @@ namespace Wikiled.Google.Chart
 
             if (labels != null)
             {
-                foreach (string label in labels)
+                foreach (var label in labels)
                 {
                     axisLabels.Add(new ChartAxisLabel(label, -1));
                 }
@@ -56,24 +41,41 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// Specify the axis range
+        ///     an RRGGBB format hexadecimal number
+        /// </summary>
+        public string Color { get; set; }
+
+        /// <summary>
+        ///     optional if used this specifies the size in pixels
+        /// </summary>
+        public int FontSize { get; set; } = -1;
+
+        /// <summary>
+        ///     By default: x-axis labels are centered, left y-axis labels are right aligned, right y-axis labels are left aligned
+        /// </summary>
+        public AxisAlignmentType Alignment { get; set; } = AxisAlignmentType.Unset;
+
+        /// <summary>
+        ///     Specify the axis range
         /// </summary>
         /// <param name="lowerBound">the lowest value on the axis</param>
         /// <param name="upperBound">the highest value on the axis</param>
-        public void SetRange(int lowerBound, int upperBound)
+        public ChartAxis SetRange(int lowerBound, int upperBound)
         {
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
             rangeSet = true;
+            return this;
         }
 
         /// <summary>
-        /// Add a label to the axis
+        ///     Add a label to the axis
         /// </summary>
         /// <param name="axisLabel"></param>
-        public void AddLabel(ChartAxisLabel axisLabel)
+        public ChartAxis AddLabel(ChartAxisLabel axisLabel)
         {
             axisLabels.Add(axisLabel);
+            return this;
         }
 
         internal string UrlAxisStyle()
@@ -82,10 +84,11 @@ namespace Wikiled.Google.Chart
             {
                 return null;
             }
-            string result = Color + ",";
+
+            var result = Color + ",";
             if (FontSize != -1)
             {
-                result += FontSize.ToString() + ",";
+                result += FontSize + ",";
             }
 
             if (Alignment != AxisAlignmentType.Unset)
@@ -129,25 +132,28 @@ namespace Wikiled.Google.Chart
 
         internal string UrlLabels()
         {
-            string result = "|";
-            foreach (ChartAxisLabel label in axisLabels)
+            var result = "|";
+            foreach (var label in axisLabels)
             {
                 result += label.Text + "|";
             }
+
             return result;
         }
 
         internal string UrlLabelPositions()
         {
-            string result = string.Empty;
-            foreach (ChartAxisLabel axisLabel in axisLabels)
+            var result = string.Empty;
+            foreach (var axisLabel in axisLabels)
             {
                 if (axisLabel.Position == -1)
                 {
                     return null;
                 }
-                result += axisLabel.Position.ToString() + ",";
+
+                result += axisLabel.Position + ",";
             }
+
             return result.TrimEnd(",".ToCharArray());
         }
 
@@ -155,8 +161,9 @@ namespace Wikiled.Google.Chart
         {
             if (rangeSet)
             {
-                return lowerBound.ToString() + "," + upperBound.ToString();
+                return lowerBound + "," + upperBound;
             }
+
             return null;
         }
     }

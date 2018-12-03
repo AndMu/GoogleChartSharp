@@ -1,23 +1,13 @@
-using System;
 using System.Collections.Generic;
 
 namespace Wikiled.Google.Chart
 {
     public class LinearStripesFill
     {
-        /// <summary>
-        /// The area that will be filled.
-        /// </summary>
-        public ChartFillTarget FillTarget { get; set; }
-        /// <summary>
-        /// specifies the angle of the gradient between 0 (vertical) and 90 (horizontal)
-        /// </summary>
-        public int Angle { get; set; }
-
         private readonly List<ColorWidthPair> colorWidthPairs = new List<ColorWidthPair>();
 
         /// <summary>
-        /// Create a linear stripes fill.
+        ///     Create a linear stripes fill.
         /// </summary>
         /// <param name="fillTarget">The area that will be filled.</param>
         /// <param name="angle">specifies the angle of the gradient between 0 (vertical) and 90 (horizontal)</param>
@@ -28,7 +18,17 @@ namespace Wikiled.Google.Chart
         }
 
         /// <summary>
-        /// A color/width pair describes a linear stripe.
+        ///     The area that will be filled.
+        /// </summary>
+        public ChartFillTarget FillTarget { get; set; }
+
+        /// <summary>
+        ///     specifies the angle of the gradient between 0 (vertical) and 90 (horizontal)
+        /// </summary>
+        public int Angle { get; set; }
+
+        /// <summary>
+        ///     A color/width pair describes a linear stripe.
         /// </summary>
         /// <param name="color">RRGGBB format hexadecimal number</param>
         /// <param name="width">must be between 0 and 1 where 1 is the full width of the chart</param>
@@ -46,17 +46,18 @@ namespace Wikiled.Google.Chart
                 case ChartFillTarget.Background:
                     return "bg";
             }
+
             return null;
         }
 
-        internal String GetUrlString()
+        internal string GetUrlString()
         {
-            string s = string.Empty;
+            var s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "ls,";
-            s += Angle.ToString() + ",";
+            s += Angle + ",";
 
-            foreach (ColorWidthPair colorWidthPair in colorWidthPairs)
+            foreach (var colorWidthPair in colorWidthPairs)
             {
                 s += colorWidthPair.Color + ",";
                 s += colorWidthPair.Width + ",";

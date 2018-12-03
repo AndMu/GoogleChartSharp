@@ -2,31 +2,19 @@ namespace Wikiled.Google.Chart
 {
     public class ShapeMarker
     {
-        public ShapeMarkerType Type { get; set; }
         /// <summary>
-        /// an RRGGBB format hexadecimal number.
-        /// </summary>
-        public string HexColor { get; set; }
-        /// <summary>
-        /// the index of the line on which to draw the marker. This is 0 for the first data set, 1 for the second and so on
-        /// </summary>
-        public int DatasetIndex { get; set; }
-        /// <summary>
-        /// a floating point value that specifies on which data point the marker will be drawn. This is 1 for the first data set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points
-        /// </summary>
-        public float DataPoint { get; set; }
-        /// <summary>
-        /// the size of the marker in pixels
-        /// </summary>
-        public int Size { get; set; }
-
-        /// <summary>
-        /// Create a shape marker for points on line charts and scatter plots
+        ///     Create a shape marker for points on line charts and scatter plots
         /// </summary>
         /// <param name="markerType"></param>
         /// <param name="hexColor">RRGGBB format hexadecimal number</param>
-        /// <param name="datasetIndex">the index of the line on which to draw the marker. This is 0 for the first data set, 1 for the second and so on</param>
-        /// <param name="dataPoint">a floating point value that specifies on which data point the marker will be drawn. This is 1 for the first data set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points.</param>
+        /// <param name="datasetIndex">
+        ///     the index of the line on which to draw the marker. This is 0 for the first data set, 1 for
+        ///     the second and so on
+        /// </param>
+        /// <param name="dataPoint">
+        ///     a floating point value that specifies on which data point the marker will be drawn. This is 1
+        ///     for the first data set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points.
+        /// </param>
         /// <param name="size">the size of the marker in pixels</param>
         public ShapeMarker(ShapeMarkerType markerType, string color, int datasetIndex, float dataPoint, int size)
         {
@@ -36,6 +24,29 @@ namespace Wikiled.Google.Chart
             DataPoint = dataPoint;
             Size = size;
         }
+
+        public ShapeMarkerType Type { get; set; }
+
+        /// <summary>
+        ///     an RRGGBB format hexadecimal number.
+        /// </summary>
+        public string HexColor { get; set; }
+
+        /// <summary>
+        ///     the index of the line on which to draw the marker. This is 0 for the first data set, 1 for the second and so on
+        /// </summary>
+        public int DatasetIndex { get; set; }
+
+        /// <summary>
+        ///     a floating point value that specifies on which data point the marker will be drawn. This is 1 for the first data
+        ///     set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points
+        /// </summary>
+        public float DataPoint { get; set; }
+
+        /// <summary>
+        ///     the size of the marker in pixels
+        /// </summary>
+        public int Size { get; set; }
 
         internal string GetTypeUrlChar()
         {
@@ -60,12 +71,13 @@ namespace Wikiled.Google.Chart
                 case ShapeMarkerType.XShape:
                     return "x";
             }
+
             return null;
         }
 
         internal string GetUrlString()
         {
-            string s = string.Empty;
+            var s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += HexColor + ",";
             s += DatasetIndex + ",";

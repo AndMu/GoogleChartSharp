@@ -7,12 +7,13 @@ namespace Wikiled.Google.Chart
     {
         public static string Encode(int[] data)
         {
-            int maxValue = FindMaxValue(data);
+            var maxValue = FindMaxValue(data);
             if (maxValue <= 61)
             {
                 return SimpleEncoding(data);
             }
-            else if (maxValue <= 4095)
+
+            if (maxValue <= 4095)
             {
                 return ExtendedEncoding(data);
             }
@@ -22,12 +23,13 @@ namespace Wikiled.Google.Chart
 
         public static string Encode(ICollection<int[]> data)
         {
-            int maxValue = FindMaxValue(data);
+            var maxValue = FindMaxValue(data);
             if (maxValue <= 61)
             {
                 return SimpleEncoding(data);
             }
-            else if (maxValue <= 4095)
+
+            if (maxValue <= 4095)
             {
                 return ExtendedEncoding(data);
             }
@@ -45,15 +47,15 @@ namespace Wikiled.Google.Chart
             return TextEncoding(data);
         }
 
-		public static string Encode(long[] data)
-		{
-			return TextEncoding(data);
-		}
+        public static string Encode(long[] data)
+        {
+            return TextEncoding(data);
+        }
 
-		public static string Encode(ICollection<long[]> data)
-		{
-			return TextEncoding(data);
-		}
+        public static string Encode(ICollection<long[]> data)
+        {
+            return TextEncoding(data);
+        }
 
         public static string SimpleEncoding(int[] data)
         {
@@ -62,9 +64,9 @@ namespace Wikiled.Google.Chart
 
         public static string SimpleEncoding(ICollection<int[]> data)
         {
-            string chartData = "chd=s:";
+            var chartData = "chd=s:";
 
-            foreach (int[] objectArray in data)
+            foreach (var objectArray in data)
             {
                 chartData += SimpleEncode(objectArray) + ",";
             }
@@ -74,10 +76,10 @@ namespace Wikiled.Google.Chart
 
         private static string SimpleEncode(int[] data)
         {
-            string simpleEncoding = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            string chartData = string.Empty;
+            var simpleEncoding = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var chartData = string.Empty;
 
-            foreach (int value in data)
+            foreach (var value in data)
             {
                 if (value == -1)
                 {
@@ -85,7 +87,7 @@ namespace Wikiled.Google.Chart
                 }
                 else
                 {
-                    char c = simpleEncoding[value];
+                    var c = simpleEncoding[value];
                     chartData += c.ToString();
                 }
             }
@@ -100,11 +102,11 @@ namespace Wikiled.Google.Chart
 
         public static string TextEncoding(ICollection<float[]> data)
         {
-            string chartData = "chd=t:";
+            var chartData = "chd=t:";
 
-            foreach (float[] objectArray in data)
+            foreach (var objectArray in data)
             {
-				chartData += TextEncode (objectArray) + "|";
+                chartData += TextEncode(objectArray) + "|";
             }
 
             return chartData.TrimEnd("|".ToCharArray());
@@ -112,9 +114,9 @@ namespace Wikiled.Google.Chart
 
         private static string TextEncode(float[] data)
         {
-            string chartData = string.Empty;
+            var chartData = string.Empty;
 
-            foreach (float value in data)
+            foreach (var value in data)
             {
                 if (value == -1)
                 {
@@ -122,47 +124,48 @@ namespace Wikiled.Google.Chart
                 }
                 else
                 {
-					chartData += value.ToString ("F") + ",";
+                    chartData += value.ToString("F") + ",";
                 }
             }
 
             return chartData.TrimEnd(",".ToCharArray());
         }
-		public static string TextEncoding(long[] data)
-		{
-			return "chd=t:" + TextEncode(data);
-		}
 
-		public static string TextEncoding(ICollection<long[]> data)
-		{
-			string chartData = "chd=t:";
+        public static string TextEncoding(long[] data)
+        {
+            return "chd=t:" + TextEncode(data);
+        }
 
-			foreach (long[] objectArray in data)
-			{
-				chartData += TextEncode (objectArray) + "|";
-			}
+        public static string TextEncoding(ICollection<long[]> data)
+        {
+            var chartData = "chd=t:";
 
-			return chartData.TrimEnd("|".ToCharArray());
-		}
+            foreach (var objectArray in data)
+            {
+                chartData += TextEncode(objectArray) + "|";
+            }
 
-		private static string TextEncode(long[] data)
-		{
-			string chartData = string.Empty;
+            return chartData.TrimEnd("|".ToCharArray());
+        }
 
-			foreach (long value in data)
-			{
-				if (value == -1)
-				{
-					chartData += "-1,";
-				}
-				else
-				{
-					chartData += value.ToString () + ",";
-				}
-			}
+        private static string TextEncode(long[] data)
+        {
+            var chartData = string.Empty;
 
-			return chartData.TrimEnd(",".ToCharArray());
-		}
+            foreach (var value in data)
+            {
+                if (value == -1)
+                {
+                    chartData += "-1,";
+                }
+                else
+                {
+                    chartData += value + ",";
+                }
+            }
+
+            return chartData.TrimEnd(",".ToCharArray());
+        }
 
         public static string ExtendedEncoding(int[] data)
         {
@@ -171,9 +174,9 @@ namespace Wikiled.Google.Chart
 
         public static string ExtendedEncoding(ICollection<int[]> data)
         {
-            string chartData = "chd=e:";
+            var chartData = "chd=e:";
 
-            foreach (int[] objectArray in data)
+            foreach (var objectArray in data)
             {
                 chartData += ExtendedEncode(objectArray) + ",";
             }
@@ -183,10 +186,10 @@ namespace Wikiled.Google.Chart
 
         private static string ExtendedEncode(int[] data)
         {
-            string extendedEncoding = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.";
-            string chartData = string.Empty;
+            var extendedEncoding = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.";
+            var chartData = string.Empty;
 
-            foreach (int value in data)
+            foreach (var value in data)
             {
                 if (value == -1)
                 {
@@ -194,8 +197,8 @@ namespace Wikiled.Google.Chart
                 }
                 else
                 {
-                    int firstCharPos = Convert.ToInt32(Math.Floor((double)(value / extendedEncoding.Length)));
-                    int secondCharPos = Convert.ToInt32(Math.Floor((double)(value % extendedEncoding.Length)));
+                    var firstCharPos = Convert.ToInt32(Math.Floor((double)(value / extendedEncoding.Length)));
+                    var secondCharPos = Convert.ToInt32(Math.Floor((double)(value % extendedEncoding.Length)));
 
                     chartData += extendedEncoding[firstCharPos];
                     chartData += extendedEncoding[secondCharPos];
@@ -207,8 +210,8 @@ namespace Wikiled.Google.Chart
 
         private static int FindMaxValue(int[] data)
         {
-            int maxValue = -1;
-            foreach (int value in data)
+            var maxValue = -1;
+            foreach (var value in data)
             {
                 if (value > maxValue)
                 {
@@ -221,14 +224,14 @@ namespace Wikiled.Google.Chart
 
         private static int FindMaxValue(ICollection<int[]> data)
         {
-            List<int> maxValuesList = new List<int>();
+            var maxValuesList = new List<int>();
 
-            foreach (int[] objectArray in data)
+            foreach (var objectArray in data)
             {
                 maxValuesList.Add(FindMaxValue(objectArray));
             }
 
-            int[] maxValues = maxValuesList.ToArray();
+            var maxValues = maxValuesList.ToArray();
             Array.Sort(maxValues);
             return maxValues[maxValues.Length - 1];
         }

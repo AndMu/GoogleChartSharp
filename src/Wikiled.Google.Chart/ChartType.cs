@@ -1,7 +1,7 @@
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Chart types, used internally
+    ///     Chart types, used internally
     /// </summary>
     public enum ChartType
     {

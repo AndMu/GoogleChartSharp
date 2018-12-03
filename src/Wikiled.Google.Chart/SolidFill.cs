@@ -3,16 +3,7 @@ namespace Wikiled.Google.Chart
     public class SolidFill
     {
         /// <summary>
-        /// The area that will be filled.
-        /// </summary>
-        public ChartFillTarget FillTarget { get; set; }
-        /// <summary>
-        /// an RRGGBB format hexadecimal number
-        /// </summary>
-        public string Color { get; set; }
-
-        /// <summary>
-        /// Create a solid fill
+        ///     Create a solid fill
         /// </summary>
         /// <param name="fillTarget">The area that will be filled.</param>
         /// <param name="color">an RRGGBB format hexadecimal number</param>
@@ -21,6 +12,16 @@ namespace Wikiled.Google.Chart
             FillTarget = fillTarget;
             Color = color;
         }
+
+        /// <summary>
+        ///     The area that will be filled.
+        /// </summary>
+        public ChartFillTarget FillTarget { get; set; }
+
+        /// <summary>
+        ///     an RRGGBB format hexadecimal number
+        /// </summary>
+        public string Color { get; set; }
 
         private string GetTypeUrlChar()
         {
@@ -31,12 +32,13 @@ namespace Wikiled.Google.Chart
                 case ChartFillTarget.Background:
                     return "bg";
             }
+
             return null;
         }
 
         public string GetUrlString()
         {
-            string s = string.Empty;
+            var s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "s,";
             s += Color;

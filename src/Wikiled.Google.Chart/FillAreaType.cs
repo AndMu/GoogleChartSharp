@@ -1,17 +1,17 @@
 namespace Wikiled.Google.Chart
 {
     /// <summary>
-    /// Specify area fill behavior
+    ///     Specify area fill behavior
     /// </summary>
     public enum FillAreaType
     {
         /// <summary>
-        /// All area under the line will be filled
+        ///     All area under the line will be filled
         /// </summary>
         SingleLine,
 
         /// <summary>
-        /// The area between this line and the next will be filled
+        ///     The area between this line and the next will be filled
         /// </summary>
         MultiLine
     }

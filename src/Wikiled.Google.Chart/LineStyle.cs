@@ -3,22 +3,7 @@ namespace Wikiled.Google.Chart
     public class LineStyle
     {
         /// <summary>
-        /// line thickness in pixels
-        /// </summary>
-        public float LineThickness { get; set; }
-
-        /// <summary>
-        /// length of each solid line segment in pixels
-        /// </summary>
-        public float LengthOfSegment { get; set; }
-
-        /// <summary>
-        /// length of each blank line segment in pixels
-        /// </summary>
-        public float LengthOfBlankSegment { get; set; }
-
-        /// <summary>
-        /// Create a line style
+        ///     Create a line style
         /// </summary>
         /// <param name="lineThickness">line thickness in pixels</param>
         /// <param name="lengthOfSegment">length of each solid line segment in pixels</param>
@@ -29,5 +14,20 @@ namespace Wikiled.Google.Chart
             LengthOfSegment = lengthOfSegment;
             LengthOfBlankSegment = lengthOfBlankSegment;
         }
+
+        /// <summary>
+        ///     line thickness in pixels
+        /// </summary>
+        public float LineThickness { get; set; }
+
+        /// <summary>
+        ///     length of each solid line segment in pixels
+        /// </summary>
+        public float LengthOfSegment { get; set; }
+
+        /// <summary>
+        ///     length of each blank line segment in pixels
+        /// </summary>
+        public float LengthOfBlankSegment { get; set; }
     }
 }
