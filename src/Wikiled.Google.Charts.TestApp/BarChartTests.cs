@@ -20,7 +20,7 @@ namespace Wikiled.Google.Charts.TestApp
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { Colors.GetColor("FF0000"), Colors.GetColor("00AA00") });
 
             return barChart.GetUrl();
         }
@@ -40,7 +40,7 @@ namespace Wikiled.Google.Charts.TestApp
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { Colors.GetColor("FF0000"), Colors.GetColor("00AA00") });
 
             return barChart.GetUrl();
         }
@@ -60,7 +60,7 @@ namespace Wikiled.Google.Charts.TestApp
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { Colors.GetColor("FF0000"), Colors.GetColor("00AA00") });
             barChart.SetBarWidth(10);
 
             return barChart.GetUrl();
@@ -81,7 +81,7 @@ namespace Wikiled.Google.Charts.TestApp
             barChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { Colors.GetColor("FF0000"), Colors.GetColor("00AA00") });
 
             return barChart.GetUrl();
         }
@@ -102,7 +102,7 @@ namespace Wikiled.Google.Charts.TestApp
             barChart.SetZeroLine(0.25);
             barChart.SetData(dataset);
 
-            barChart.SetDatasetColors(new[] { "FF0000", "00AA00" });
+            barChart.SetDatasetColors(new[] { Colors.GetColor("FF0000"), Colors.GetColor("00AA00") });
 
             return barChart.GetUrl();
         }

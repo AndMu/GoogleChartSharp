@@ -8,6 +8,8 @@ namespace Wikiled.Google.Chart
 
         int Width { get; set; }
 
+        int DataSize { get; }
+
         IChart AddAxis(ChartAxis axis);
 
         IChart AddFillArea(FillArea fillArea);
@@ -36,7 +38,7 @@ namespace Wikiled.Google.Chart
 
         IChart SetData(long[] data);
 
-        IChart SetDatasetColors(string[] datasetColors);
+        IChart SetDatasetColors(Color[] datasetColors);
 
         IChart SetGrid(float xAxisStepSize, float yAxisStepSize);
 
@@ -46,8 +48,8 @@ namespace Wikiled.Google.Chart
 
         IChart SetTitle(string title);
 
-        IChart SetTitle(string title, string color);
+        IChart SetTitle(string title, Color color);
 
-        IChart SetTitle(string title, string color, int fontSize);
+        IChart SetTitle(string title, Color color, int fontSize);
     }
 }

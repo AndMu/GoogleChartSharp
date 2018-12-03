@@ -9,7 +9,7 @@ namespace Wikiled.Google.Chart
         /// <param name="color">an RRGGBB format hexadecimal number</param>
         /// <param name="startPoint">Must be between 0.0 and 1.0. 0.0 is axis start, 1.0 is axis end.</param>
         /// <param name="endPoint">Must be between 0.0 and 1.0. 0.0 is axis start, 1.0 is axis end.</param>
-        public RangeMarker(RangeMarkerType rangeMarkerType, string color, double startPoint, double endPoint)
+        public RangeMarker(RangeMarkerType rangeMarkerType, Color color, double startPoint, double endPoint)
         {
             Type = rangeMarkerType;
             Color = color;
@@ -22,7 +22,7 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     an RRGGBB format hexadecimal number.
         /// </summary>
-        public string Color { get; set; }
+        public Color Color { get; set; }
 
         /// <summary>
         ///     for horizontal range markers is the position on the y-axis at which the range starts where 0.00 is the bottom and
@@ -57,7 +57,7 @@ namespace Wikiled.Google.Chart
         {
             var s = string.Empty;
             s += GetTypeUrlChar() + ",";
-            s += Color + ",";
+            s += Color.Code + ",";
             // this value is ignored - but has to be a number
             s += "0" + ",";
             s += StartPoint + ",";

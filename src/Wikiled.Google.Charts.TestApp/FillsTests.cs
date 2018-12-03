@@ -15,8 +15,8 @@ namespace Wikiled.Google.Charts.TestApp
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
-            SolidFill bgFill = new SolidFill(ChartFillTarget.Background, "EFEFEF");
-            SolidFill chartAreaFill = new SolidFill(ChartFillTarget.ChartArea, "000000");
+            SolidFill bgFill = new SolidFill(ChartFillTarget.Background, Colors.GetColor("EFEFEF"));
+            SolidFill chartAreaFill = new SolidFill(ChartFillTarget.ChartArea, Colors.GetColor("000000"));
 
             lineChart.AddSolidFill(bgFill);
             lineChart.AddSolidFill(chartAreaFill);
@@ -35,10 +35,10 @@ namespace Wikiled.Google.Charts.TestApp
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
             LinearGradientFill fill = new LinearGradientFill(ChartFillTarget.ChartArea, 45);
-            fill.AddColorOffsetPair("FFFFFF", 0);
-            fill.AddColorOffsetPair("76A4FB", 0.75);
+            fill.AddColorOffsetPair(Colors.GetColor("FFFFFF"), 0);
+            fill.AddColorOffsetPair(Colors.GetColor("76A4FB"), 0.75);
 
-            SolidFill bgFill = new SolidFill(ChartFillTarget.Background, "EFEFEF");
+            SolidFill bgFill = new SolidFill(ChartFillTarget.Background, Colors.GetColor("EFEFEF"));
 
             lineChart.AddLinearGradientFill(fill);
             lineChart.AddSolidFill(bgFill);
@@ -57,11 +57,11 @@ namespace Wikiled.Google.Charts.TestApp
             chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
             LinearStripesFill linearStripesFill = new LinearStripesFill(ChartFillTarget.ChartArea, 0);
-            linearStripesFill.AddColorWidthPair("CCCCCC", 0.2);
-            linearStripesFill.AddColorWidthPair("FFFFFF", 0.2);
+            linearStripesFill.AddColorWidthPair(Colors.GetColor("CCCCCC"), 0.2);
+            linearStripesFill.AddColorWidthPair(Colors.GetColor("FFFFFF"), 0.2);
             chart.AddLinearStripesFill(linearStripesFill);
 
-            chart.AddSolidFill(new SolidFill(ChartFillTarget.Background, "EFEFEF"));
+            chart.AddSolidFill(new SolidFill(ChartFillTarget.Background, Colors.GetColor("EFEFEF")));
             
             return chart.GetUrl();
         }
@@ -76,7 +76,7 @@ namespace Wikiled.Google.Charts.TestApp
             chart.AddAxis(new ChartAxis(ChartAxisType.Left));
             chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
-            chart.AddFillArea(new FillArea("224499", 0));
+            chart.AddFillArea(new FillArea(Colors.GetColor("224499"), 0));
             
             return chart.GetUrl();
         }
@@ -99,8 +99,8 @@ namespace Wikiled.Google.Charts.TestApp
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
-            lineChart.AddFillArea(new FillArea("FF0000", 0, 1));
-            lineChart.AddFillArea(new FillArea("224499", 1, 2));
+            lineChart.AddFillArea(new FillArea(Colors.GetColor("FF0000"), 0, 1));
+            lineChart.AddFillArea(new FillArea(Colors.GetColor("224499"), 1, 2));
 
             return lineChart.GetUrl();
         }

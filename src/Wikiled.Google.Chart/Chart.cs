@@ -28,7 +28,7 @@ namespace Wikiled.Google.Chart
 
         private string data;
 
-        private string[] datasetColors;
+        private Color[] datasetColors;
         private float gridLengthBlankSegment = -1;
         private float gridLengthLineSegment = -1;
 
@@ -147,10 +147,10 @@ namespace Wikiled.Google.Chart
         /// </summary>
         /// <param name="title">chart title text</param>
         /// <param name="color">chart title color an RRGGBB format hexadecimal number</param>
-        public IChart SetTitle(string title, string color)
+        public IChart SetTitle(string title, Color color)
         {
             SetTitle(title);
-            titleColor = color;
+            titleColor = color.Code;
             return this;
         }
 
@@ -160,10 +160,10 @@ namespace Wikiled.Google.Chart
         /// <param name="title">chart title text</param>
         /// <param name="color">chart title color an RRGGBB format hexadecimal number</param>
         /// <param name="fontSize">chart title font size in pixels</param>
-        public IChart SetTitle(string title, string color, int fontSize)
+        public IChart SetTitle(string title, Color color, int fontSize)
         {
             SetTitle(title);
-            titleColor = color + "," + fontSize;
+            titleColor = color.Code + "," + fontSize;
             return this;
         }
 
@@ -173,7 +173,7 @@ namespace Wikiled.Google.Chart
         ///     chart.
         /// </summary>
         /// <param name="datasetColors">an array of RRGGBB format hexadecimal numbers</param>
-        public IChart SetDatasetColors(string[] datasetColors)
+        public IChart SetDatasetColors(Color[] datasetColors)
         {
             this.datasetColors = datasetColors;
             return this;
@@ -401,7 +401,7 @@ namespace Wikiled.Google.Chart
                 var s = "chco=";
                 foreach (var color in datasetColors)
                 {
-                    s += color + ",";
+                    s += color.Code + ",";
                 }
 
                 UrlElements.Enqueue(s.TrimEnd(",".ToCharArray()));

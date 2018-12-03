@@ -5,7 +5,7 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     RRGGBB format hexadecimal number
         /// </summary>
-        public readonly string Color;
+        public readonly Color Color;
 
         /// <summary>
         ///     must be between 0 and 1 where 1 is the full width of the chart
@@ -17,7 +17,7 @@ namespace Wikiled.Google.Chart
         /// </summary>
         /// <param name="color">RGGBB format hexadecimal number</param>
         /// <param name="width">must be between 0 and 1 where 1 is the full width of the chart</param>
-        public ColorWidthPair(string color, double width)
+        public ColorWidthPair(Color color, double width)
         {
             Color = color;
             Width = width;

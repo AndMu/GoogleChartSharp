@@ -15,7 +15,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Single Dataset Per Line", "0000FF", 14);
+            lineChart.SetTitle("Single Dataset Per Line", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
@@ -51,7 +51,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2Y);
 
             LineChart lineChart = new LineChart(250, 150, LineChartType.MultiDataSet);
-            lineChart.SetTitle("Multi Dataset Per Line", "0000FF", 14);
+            lineChart.SetTitle("Multi Dataset Per Line", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
@@ -69,12 +69,12 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Line Color And Legend Test", "0000FF", 14);
+            lineChart.SetTitle("Line Color And Legend Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
 
-            lineChart.SetDatasetColors(new[] { "FF0000", "00FF00" });
+            lineChart.SetDatasetColors(new[] { Colors.GetColor("FF0000"), Colors.GetColor("00FF00") });
             lineChart.SetLegend(new[] { "line1", "line2" });
 
             return lineChart.GetUrl();
@@ -90,7 +90,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Line Style Test", "0000FF", 14);
+            lineChart.SetTitle("Line Style Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));

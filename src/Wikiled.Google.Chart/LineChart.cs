@@ -51,9 +51,10 @@ namespace Wikiled.Google.Chart
         ///     first line will use the first line style.
         /// </summary>
         /// <param name="lineStyle"></param>
-        public void AddLineStyle(LineStyle lineStyle)
+        public LineChart AddLineStyle(LineStyle lineStyle)
         {
             lineStyles.Add(lineStyle);
+            return this;
         }
 
         protected override void CollectUrlElements()

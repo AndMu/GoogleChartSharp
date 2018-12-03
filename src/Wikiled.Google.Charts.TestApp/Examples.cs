@@ -91,7 +91,7 @@ namespace Wikiled.Google.Charts.TestApp
             bottomAxis2.AddLabel(new ChartAxisLabel("Blood Alcohol Concentration (%)", 50));
 
             LineChart lineChart = new LineChart(400, 200);
-            lineChart.SetTitle("Programming Skill", "000000", 14);
+            lineChart.SetTitle("Programming Skill", Colors.GetColor("000000"), 14);
             lineChart.SetData(data);
             lineChart.AddAxis(bottomAxis);
             lineChart.AddAxis(bottomAxis2);

@@ -19,7 +19,7 @@ namespace Wikiled.Google.Chart
         ///     line indexes are determined by the order in which datasets are added. The first set is index
         ///     0, then index 1 etc
         /// </param>
-        public FillArea(string color, int startLineIndex, int endLineIndex)
+        public FillArea(Color color, int startLineIndex, int endLineIndex)
         {
             type = FillAreaType.MultiLine;
             Color = color;
@@ -35,7 +35,7 @@ namespace Wikiled.Google.Chart
         ///     line indexes are determined by the order in which datasets are added. The first set is index 0,
         ///     then index 1 etc
         /// </param>
-        public FillArea(string color, int lineIndex)
+        public FillArea(Color color, int lineIndex)
         {
             type = FillAreaType.SingleLine;
             Color = color;
@@ -45,7 +45,7 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     an RRGGBB format hexadecimal number
         /// </summary>
-        public string Color { get; set; }
+        public Color Color { get; set; }
 
         /// <summary>
         ///     the index of the line at which the fill starts. This is determined by the order in which data sets are added. The
@@ -66,7 +66,7 @@ namespace Wikiled.Google.Chart
             if (type == FillAreaType.MultiLine)
             {
                 s += "b" + ",";
-                s += Color + ",";
+                s += Color.Code + ",";
                 s += StartLineIndex + ",";
                 s += EndLineIndex + ",";
                 s += "0"; // ignored
@@ -74,7 +74,7 @@ namespace Wikiled.Google.Chart
             else if (type == FillAreaType.SingleLine)
             {
                 s += "B" + ",";
-                s += Color + ",";
+                s += Color.Code + ",";
                 s += StartLineIndex + ",";
                 s += "0" + ","; // ignored
                 s += "0"; // ignored

@@ -35,7 +35,7 @@ namespace Wikiled.Google.Chart
         ///     specify at what point the color is pure where: 0 specifies the right-most chart position and 1 the
         ///     left-most
         /// </param>
-        public void AddColorOffsetPair(string color, double offset)
+        public void AddColorOffsetPair(Color color, double offset)
         {
             colorOffsetPairs.Add(new ColorOffsetPair(color, offset));
         }
@@ -62,7 +62,7 @@ namespace Wikiled.Google.Chart
 
             foreach (var colorOffsetPair in colorOffsetPairs)
             {
-                s += colorOffsetPair.Color + ",";
+                s += colorOffsetPair.Color.Code + ",";
                 s += colorOffsetPair.Offset + ",";
             }
 

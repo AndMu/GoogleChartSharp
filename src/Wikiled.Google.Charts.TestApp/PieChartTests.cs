@@ -22,8 +22,7 @@ namespace Wikiled.Google.Charts.TestApp
             pieChart.SetTitle("3D Test");
             pieChart.SetData(data);
             pieChart.SetPieChartLabels(new[] { "A", "B", "C", "D" });
-            pieChart.SetDatasetColors(new[] { "0000FF" });
-
+            pieChart.SetDatasetColors(new[] { Colors.GetColor("0000FF") });
             return pieChart.GetUrl();
         }
     }

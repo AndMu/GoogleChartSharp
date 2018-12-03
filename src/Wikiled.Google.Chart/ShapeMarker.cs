@@ -16,7 +16,7 @@ namespace Wikiled.Google.Chart
         ///     for the first data set, 2 for the second and so on. Specify a fraction to interpolate a marker between two points.
         /// </param>
         /// <param name="size">the size of the marker in pixels</param>
-        public ShapeMarker(ShapeMarkerType markerType, string color, int datasetIndex, float dataPoint, int size)
+        public ShapeMarker(ShapeMarkerType markerType, Color color, int datasetIndex, float dataPoint, int size)
         {
             Type = markerType;
             HexColor = color;
@@ -30,7 +30,7 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     an RRGGBB format hexadecimal number.
         /// </summary>
-        public string HexColor { get; set; }
+        public Color HexColor { get; set; }
 
         /// <summary>
         ///     the index of the line on which to draw the marker. This is 0 for the first data set, 1 for the second and so on
@@ -79,7 +79,7 @@ namespace Wikiled.Google.Chart
         {
             var s = string.Empty;
             s += GetTypeUrlChar() + ",";
-            s += HexColor + ",";
+            s += HexColor.Code + ",";
             s += DatasetIndex + ",";
             s += DataPoint + ",";
             s += Size.ToString();

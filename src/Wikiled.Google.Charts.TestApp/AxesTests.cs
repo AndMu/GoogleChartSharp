@@ -15,7 +15,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Basic Axes Test", "0000FF", 14);
+            lineChart.SetTitle("Basic Axes Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
@@ -35,7 +35,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Axis Labels Test", "0000FF", 14);
+            lineChart.SetTitle("Axis Labels Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom, new[] { "b", "o", "t", "t", "o", "m" }));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left, new[] { "l", "e", "f", "t" }));
@@ -67,7 +67,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Axes Range Test", "0000FF", 14);
+            lineChart.SetTitle("Axes Range Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
 
             ChartAxis topAxis = new ChartAxis(ChartAxisType.Top);
@@ -99,7 +99,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Axes Style Test", "0000FF", 14);
+            lineChart.SetTitle("Axes Style Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
 
             ChartAxis topAxis = new ChartAxis(ChartAxisType.Top);
@@ -107,7 +107,7 @@ namespace Wikiled.Google.Charts.TestApp
             topAxis.AddLabel(new ChartAxisLabel("test", 2));
             topAxis.AddLabel(new ChartAxisLabel("test", 6));
             topAxis.FontSize = 12;
-            topAxis.Color = "FF0000";
+            topAxis.Color = Colors.GetColor("FF0000");
             topAxis.Alignment = AxisAlignmentType.Left;
             lineChart.AddAxis(topAxis);
 
@@ -116,7 +116,7 @@ namespace Wikiled.Google.Charts.TestApp
             bottomAxis.AddLabel(new ChartAxisLabel("test", 6));
             bottomAxis.SetRange(0, 10);
             bottomAxis.FontSize = 14;
-            bottomAxis.Color = "00FF00";
+            bottomAxis.Color = Colors.GetColor("00FF00");
             bottomAxis.Alignment = AxisAlignmentType.Right;
             lineChart.AddAxis(bottomAxis);
 
@@ -133,7 +133,7 @@ namespace Wikiled.Google.Charts.TestApp
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(250, 150);
-            lineChart.SetTitle("Stacked Axes Test", "0000FF", 14);
+            lineChart.SetTitle("Stacked Axes Test", Colors.GetColor("0000FF"), 14);
             lineChart.SetData(dataset);
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));

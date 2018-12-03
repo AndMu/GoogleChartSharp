@@ -30,11 +30,10 @@ namespace Wikiled.Google.Chart.Tests.Acceptance.Api
             dataset.Add(line2);
 
             LineChart lineChart = new LineChart(500, 300);
-            lineChart.SetTitle("Line Color And Legend Test", "0000FF", 14);
+            lineChart.SetTitle("Line Color And Legend Test", Colors.Black, 14);
             lineChart.SetData(dataset);
-            lineChart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, "000000", 0.499, 0.501));
-            lineChart.AddLineStyle(new LineStyle(5, 0, 0));
-            lineChart.AddLineStyle(new LineStyle(5, 0, 0));
+            lineChart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, Colors.Black, 0.499, 0.501));
+            lineChart.AddLineStyleAll(new LineStyle(5, 0, 0));
 
             List<string> days = new List<string>();
             var today = DateTime.Today;
@@ -46,7 +45,7 @@ namespace Wikiled.Google.Chart.Tests.Acceptance.Api
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom, days.ToArray()));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left).SetRange(-2, 2));
 
-            lineChart.SetDatasetColors(new[] { "FF0000", "00FF00" });
+            lineChart.SetAutoColors();
             lineChart.SetLegend(new[] { "AMD", "MU" });
 
             var data = await instance.GetImage(lineChart);

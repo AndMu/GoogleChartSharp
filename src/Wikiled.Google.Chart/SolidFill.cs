@@ -7,7 +7,7 @@ namespace Wikiled.Google.Chart
         /// </summary>
         /// <param name="fillTarget">The area that will be filled.</param>
         /// <param name="color">an RRGGBB format hexadecimal number</param>
-        public SolidFill(ChartFillTarget fillTarget, string color)
+        public SolidFill(ChartFillTarget fillTarget, Color color)
         {
             FillTarget = fillTarget;
             Color = color;
@@ -21,7 +21,7 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     an RRGGBB format hexadecimal number
         /// </summary>
-        public string Color { get; set; }
+        public Color Color { get; set; }
 
         private string GetTypeUrlChar()
         {
@@ -41,7 +41,7 @@ namespace Wikiled.Google.Chart
             var s = string.Empty;
             s += GetTypeUrlChar() + ",";
             s += "s,";
-            s += Color;
+            s += Color.Code;
             return s;
         }
     }

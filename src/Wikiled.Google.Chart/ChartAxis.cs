@@ -43,7 +43,7 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     an RRGGBB format hexadecimal number
         /// </summary>
-        public string Color { get; set; }
+        public Color Color { get; set; }
 
         /// <summary>
         ///     optional if used this specifies the size in pixels
@@ -85,7 +85,7 @@ namespace Wikiled.Google.Chart
                 return null;
             }
 
-            var result = Color + ",";
+            var result = Color.Code + ",";
             if (FontSize != -1)
             {
                 result += FontSize + ",";

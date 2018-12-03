@@ -32,7 +32,7 @@ namespace Wikiled.Google.Chart
         /// </summary>
         /// <param name="color">RRGGBB format hexadecimal number</param>
         /// <param name="width">must be between 0 and 1 where 1 is the full width of the chart</param>
-        public void AddColorWidthPair(string color, double width)
+        public void AddColorWidthPair(Color color, double width)
         {
             colorWidthPairs.Add(new ColorWidthPair(color, width));
         }
@@ -59,7 +59,7 @@ namespace Wikiled.Google.Chart
 
             foreach (var colorWidthPair in colorWidthPairs)
             {
-                s += colorWidthPair.Color + ",";
+                s += colorWidthPair.Color.Code + ",";
                 s += colorWidthPair.Width + ",";
             }
 

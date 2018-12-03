@@ -14,8 +14,8 @@ namespace Wikiled.Google.Charts.TestApp
             chart.AddAxis(new ChartAxis(ChartAxisType.Left));
             chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
-            chart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, "EFEFEF", 0.2, 0.7));
-            chart.AddRangeMarker(new RangeMarker(RangeMarkerType.Vertical, "CCCCCC", 0.4, 0.6));
+            chart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, Colors.GetColor("EFEFEF"), 0.2, 0.7));
+            chart.AddRangeMarker(new RangeMarker(RangeMarkerType.Vertical, Colors.GetColor("CCCCCC"), 0.4, 0.6));
 
             return chart.GetUrl();
         }
@@ -30,10 +30,10 @@ namespace Wikiled.Google.Charts.TestApp
             chart.AddAxis(new ChartAxis(ChartAxisType.Left));
             chart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
 
-            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Arrow, "FF0000", 0, 0, 5));
-            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Circle, "00FF00", 0, 1, 15));
-            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Cross, "0000FF", 0, 2, 15));
-            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.VerticalLine, "FF0000", 0, 3, 2));
+            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Arrow, Colors.GetColor("FF0000"), 0, 0, 5));
+            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Circle, Colors.GetColor("00FF00"), 0, 1, 15));
+            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.Cross, Colors.GetColor("0000FF"), 0, 2, 15));
+            chart.AddShapeMarker(new ShapeMarker(ShapeMarkerType.VerticalLine, Colors.GetColor("FF0000"), 0, 3, 2));
 
             return chart.GetUrl();
         }
