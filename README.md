@@ -11,7 +11,7 @@ A C# wrapper for the Google Chart Images API.
 
 This a fork of the original GoogleChartSharp wrapper, found at https://code.google.com/p/googlechartsharp/.
 
-Compiled as .NetStandard 1.6 library and is published on nuget
+Compiled as .NetStandard 2.0 library and is published as nuget
 
 Sample use code
 ```
