@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Wikiled.Google.Chart.Api;
+using Wikiled.Google.Chart.Helpers;
 
 namespace Wikiled.Google.Chart.Tests.Acceptance.Api
 {

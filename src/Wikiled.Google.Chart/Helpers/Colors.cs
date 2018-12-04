@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Wikiled.Google.Chart
+namespace Wikiled.Google.Chart.Helpers
 {
     public static class Colors
     {

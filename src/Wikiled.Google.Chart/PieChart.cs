@@ -55,8 +55,8 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     Legend is not supported on Pie Charts
         /// </summary>
-        /// <param name="strs"></param>
-        public override IChart SetLegend(string[] strs)
+        /// <param name="labels"></param>
+        public override IChart SetLegend(string[] labels)
         {
             throw new InvalidFeatureForChartTypeException();
         }

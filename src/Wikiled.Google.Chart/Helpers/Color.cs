@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wikiled.Google.Chart
+namespace Wikiled.Google.Chart.Helpers
 {
     public sealed class Color
     {

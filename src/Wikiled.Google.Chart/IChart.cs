@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wikiled.Google.Chart.Helpers;
 
 namespace Wikiled.Google.Chart
 {
@@ -8,7 +9,7 @@ namespace Wikiled.Google.Chart
 
         int Width { get; set; }
 
-        int DataSize { get; }
+        int TotalRows { get; }
 
         IChart AddAxis(ChartAxis axis);
 
@@ -44,7 +45,7 @@ namespace Wikiled.Google.Chart
 
         IChart SetGrid(float xAxisStepSize, float yAxisStepSize, float lengthLineSegment, float lengthBlankSegment);
 
-        IChart SetLegend(string[] strs);
+        IChart SetLegend(string[] labels);
 
         IChart SetTitle(string title);
 

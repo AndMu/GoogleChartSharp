@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Wikiled.Google.Chart.Helpers;
 
 namespace Wikiled.Google.Chart
 {

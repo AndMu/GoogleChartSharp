@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace Wikiled.Google.Chart
+namespace Wikiled.Google.Chart.Helpers
 {
     public static class ChartExtension
     {
@@ -23,17 +22,17 @@ namespace Wikiled.Google.Chart
 
         public static IChart SetAutoColors(this IChart chart)
         {
-            if (chart.DataSize > defaultColor.Length)
+            if (chart.TotalRows > defaultColor.Length)
             {
                 throw new ArgumentOutOfRangeException(nameof(chart), "Too many data series");
             }
 
-            return chart.SetDatasetColors(defaultColor.Take(chart.DataSize).ToArray());
+            return chart.SetDatasetColors(defaultColor.Take(chart.TotalRows).ToArray());
         }
 
         public static LineChart AddLineStyleAll(this LineChart chart, LineStyle style)
         {
-            for (int i = 0; i < chart.DataSize; i++)
+            for (int i = 0; i < chart.TotalRows; i++)
             {
                 chart.AddLineStyle(style);
             }

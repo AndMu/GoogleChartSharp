@@ -8,5 +8,9 @@
     <ProjectUrl>https://github.com/AndMu/Wikiled.Google.Chart</ProjectUrl>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <LangVersion>Latest</LangVersion>
-  </PropertyGroup>  
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Deedle" Version="1.2.5" />
+    <PackageReference Include="FSharp.Core" Version="4.5.4" />
+  </ItemGroup>  
 </Project>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Wikiled.Google.Chart.Helpers;
 
 namespace Wikiled.Google.Chart
 {
@@ -52,7 +53,7 @@ namespace Wikiled.Google.Chart
 
         internal Queue<string> UrlElements { get; } = new Queue<string>();
 
-        public int DataSize { get; private set; }
+        public int TotalRows { get; private set; }
 
         /// <summary>
         ///     Chart width in pixels.
@@ -71,7 +72,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(int[] data)
         {
             this.data = ChartData.Encode(data);
-            DataSize = 1;
+            TotalRows = 1;
             return this;
         }
 
@@ -82,7 +83,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(ICollection<int[]> data)
         {
             this.data = ChartData.Encode(data);
-            DataSize = data.Count;
+            TotalRows = data.Count;
             return this;
         }
 
@@ -93,7 +94,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(float[] data)
         {
             this.data = ChartData.Encode(data);
-            DataSize = 1;
+            TotalRows = 1;
             return this;
         }
 
@@ -104,7 +105,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(ICollection<float[]> data)
         {
             this.data = ChartData.Encode(data);
-            DataSize = data.Count;
+            TotalRows = data.Count;
             return this;
         }
 
@@ -115,7 +116,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(long[] data)
         {
             this.data = ChartData.Encode(data);
-            DataSize = 1;
+            TotalRows = 1;
             return this;
         }
 
@@ -126,7 +127,7 @@ namespace Wikiled.Google.Chart
         public IChart SetData(ICollection<long[]> data)
         {
             this.data = ChartData.Encode(data);
-            DataSize = data.Count;
+            TotalRows = data.Count;
             return this;
         }
 
@@ -286,12 +287,12 @@ namespace Wikiled.Google.Chart
         /// <summary>
         ///     Set chart legend
         /// </summary>
-        /// <param name="strs">legend labels</param>
-        public virtual IChart SetLegend(string[] strs)
+        /// <param name="labels">legend labels</param>
+        public virtual IChart SetLegend(string[] labels)
         {
-            foreach (var s in strs)
+            foreach (var label in labels)
             {
-                legendStrings.Add(s);
+                legendStrings.Add(label);
             }
 
             return this;
