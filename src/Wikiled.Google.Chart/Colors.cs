@@ -309,7 +309,7 @@ namespace Wikiled.Google.Chart
             if (!nameResolutionByCode.TryGetValue(hex, out Color color))
             {
                 color = new Color(hex);
-                nameResolutionByCode[hex] = color;
+                return color;
             }
 
             return color;
