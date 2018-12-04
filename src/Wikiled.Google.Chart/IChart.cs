@@ -9,7 +9,9 @@ namespace Wikiled.Google.Chart
 
         int Width { get; set; }
 
-        int TotalRows { get; }
+        int TotalPoints { get; }
+
+        int TotalSeries { get; }
 
         IChart AddAxis(ChartAxis axis);
 

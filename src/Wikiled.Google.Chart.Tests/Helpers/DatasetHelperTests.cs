@@ -38,7 +38,8 @@ namespace Wikiled.Google.Chart.Tests.Helpers
             instance.AddSeries("One", firstData);
             instance.AddSeries("Two", secondData);
             instance.Populate(chart);
-            Assert.AreEqual(2, chart.TotalRows);
+            Assert.AreEqual(2, chart.TotalSeries);
+            Assert.AreEqual(5, chart.TotalPoints);
         }
 
         [Test]
@@ -48,7 +49,8 @@ namespace Wikiled.Google.Chart.Tests.Helpers
             instance.AddSeries("One", firstData);
             instance.AddSeries("Two", secondData);
             instance.Populate(chart);
-            Assert.AreEqual(2, chart.TotalRows);
+            Assert.AreEqual(2, chart.TotalSeries);
+            Assert.AreEqual(97, chart.TotalPoints);
         }
     }
 }
