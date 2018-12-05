@@ -26,7 +26,7 @@ namespace Wikiled.Google.Chart.Tests
             instance.SetData(new[] { 1f });
             Assert.AreEqual(1, instance.TotalRows);
 
-            instance.SetData(new[] { 1l });
+            instance.SetData(new[] { 1L });
             Assert.AreEqual(1, instance.TotalRows);
 
             var list = new List<int[]>();
@@ -42,8 +42,8 @@ namespace Wikiled.Google.Chart.Tests
             Assert.AreEqual(2, instance.TotalRows);
 
             var listl = new List<long[]>();
-            listl.Add(new[] { 1l });
-            listl.Add(new[] { 1l });
+            listl.Add(new[] { 1L });
+            listl.Add(new[] { 1L });
             instance.SetData(listl);
             Assert.AreEqual(2, instance.TotalRows);
         }

@@ -10,7 +10,7 @@
     <LangVersion>Latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Deedle" Version="1.2.5" />
+    <PackageReference Include="Deedle" Version="2.0.0-beta01" />
     <PackageReference Include="FSharp.Core" Version="4.5.4" />
   </ItemGroup>  
 </Project>
