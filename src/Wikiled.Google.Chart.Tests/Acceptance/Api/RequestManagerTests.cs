@@ -54,6 +54,33 @@ namespace Wikiled.Google.Chart.Tests.Acceptance.Api
             File.WriteAllBytes(Path.Combine(TestContext.CurrentContext.TestDirectory, "image.jpg"), data);
         }
 
+        [Test]
+        public async Task TimeSeries()
+        {
+            var chart = new LineChart(500, 200);
+            var firstData = new[]
+                        {
+                            new DataPoint { Date = new DateTime(2012, 02, 23), Value = 20 },
+                            new DataPoint { Date = new DateTime(2012, 02, 23), Value = 30 },
+                            new DataPoint { Date = new DateTime(2012, 02, 25), Value = 25 }
+                        };
+
+            var secondData = new[]
+                         {
+                             new DataPoint { Date = new DateTime(2012, 02, 21), Value = 77 },
+                             new DataPoint { Date = new DateTime(2012, 02, 25), Value = 48 }
+                         };
+
+            var dataSet = new DatasetHelper(new HourSampling());
+            dataSet.AddSeries("One", firstData);
+            dataSet.AddSeries("Two", secondData);
+            dataSet.Populate(chart, (date, i) => i % 5 == 0);
+
+            var data = await instance.GetImage(chart);
+            Assert.Greater(data.Length, 5000);
+            File.WriteAllBytes(Path.Combine(TestContext.CurrentContext.TestDirectory, "image.jpg"), data);
+        }
+
         private RequestManager CreateManager()
         {
             return new RequestManager();

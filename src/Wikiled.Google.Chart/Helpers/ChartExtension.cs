@@ -22,17 +22,37 @@ namespace Wikiled.Google.Chart.Helpers
 
         public static IChart SetAutoColors(this IChart chart)
         {
-            if (chart.TotalRows > defaultColor.Length)
+            if (chart == null)
+            {
+                throw new ArgumentNullException(nameof(chart));
+            }
+
+            if (chart.TotalSeries == 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(chart), "Series not setup");
+            }
+
+            if (chart.TotalSeries > defaultColor.Length)
             {
                 throw new ArgumentOutOfRangeException(nameof(chart), "Too many data series");
             }
 
-            return chart.SetDatasetColors(defaultColor.Take(chart.TotalRows).ToArray());
+            return chart.SetDatasetColors(defaultColor.Take(chart.TotalSeries).ToArray());
         }
 
         public static LineChart AddLineStyleAll(this LineChart chart, LineStyle style)
         {
-            for (int i = 0; i < chart.TotalRows; i++)
+            if (chart == null)
+            {
+                throw new ArgumentNullException(nameof(chart));
+            }
+
+            if (style == null)
+            {
+                throw new ArgumentNullException(nameof(style));
+            }
+
+            for (int i = 0; i < chart.TotalSeries; i++)
             {
                 chart.AddLineStyle(style);
             }

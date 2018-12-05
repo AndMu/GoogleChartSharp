@@ -4,14 +4,14 @@ namespace Wikiled.Google.Chart.Helpers
 {
     public class HourSampling : ISampling
     {
-        public DateTime GetNext(DateTime dateTime)
-        {
-            return dateTime.AddHours(1);
-        }
-
         public string GetName(DateTime date)
         {
             return date.Hour.ToString();
+        }
+
+        public TimeSpan GetStep()
+        {
+            return TimeSpan.FromHours(1);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Wikiled.Google.Chart.Helpers;
 
 namespace Wikiled.Google.Chart
@@ -53,7 +54,9 @@ namespace Wikiled.Google.Chart
 
         internal Queue<string> UrlElements { get; } = new Queue<string>();
 
-        public int TotalRows { get; private set; }
+        public int TotalSeries { get; private set; }
+
+        public int TotalPoints { get; private set; }
 
         /// <summary>
         ///     Chart width in pixels.
@@ -71,8 +74,19 @@ namespace Wikiled.Google.Chart
         /// <param name="data"></param>
         public IChart SetData(int[] data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (data.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
+            }
+
+            TotalPoints = data.Length;
             this.data = ChartData.Encode(data);
-            TotalRows = 1;
+            TotalSeries = 1;
             return this;
         }
 
@@ -82,8 +96,19 @@ namespace Wikiled.Google.Chart
         /// <param name="data"></param>
         public IChart SetData(ICollection<int[]> data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (data.Count == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
+            }
+
+            TotalPoints = data.First().Length;
             this.data = ChartData.Encode(data);
-            TotalRows = data.Count;
+            TotalSeries = data.Count;
             return this;
         }
 
@@ -93,8 +118,19 @@ namespace Wikiled.Google.Chart
         /// <param name="data"></param>
         public IChart SetData(float[] data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (data.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
+            }
+
+            TotalPoints = data.Length;
             this.data = ChartData.Encode(data);
-            TotalRows = 1;
+            TotalSeries = 1;
             return this;
         }
 
@@ -104,8 +140,19 @@ namespace Wikiled.Google.Chart
         /// <param name="data"></param>
         public IChart SetData(ICollection<float[]> data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (data.Count == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
+            }
+
+            TotalPoints = data.First().Length;
             this.data = ChartData.Encode(data);
-            TotalRows = data.Count;
+            TotalSeries = data.Count;
             return this;
         }
 
@@ -115,8 +162,19 @@ namespace Wikiled.Google.Chart
         /// <param name="data"></param>
         public IChart SetData(long[] data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (data.Length == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
+            }
+
+            TotalPoints = data.Length;
             this.data = ChartData.Encode(data);
-            TotalRows = 1;
+            TotalSeries = 1;
             return this;
         }
 
@@ -126,8 +184,19 @@ namespace Wikiled.Google.Chart
         /// <param name="data"></param>
         public IChart SetData(ICollection<long[]> data)
         {
+            if (data == null)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
+            if (data.Count == 0)
+            {
+                throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
+            }
+
+            TotalPoints = data.First().Length;
             this.data = ChartData.Encode(data);
-            TotalRows = data.Count;
+            TotalSeries = data.Count;
             return this;
         }
 
