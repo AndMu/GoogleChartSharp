@@ -33,9 +33,11 @@ namespace Wikiled.Google.Chart.Helpers
             frame = frameBuilder.Frame.FillMissing(0f);
             frame.DropColumn("NULL");
             List<float[]> values = new List<float[]>();
+            List<string> labels = new List<string>();
             foreach (KeyValuePair<string, Series<DateTime, float>> columns in frame.GetAllColumns<float>())
             {
                 values.Add(columns.Value.Values.ToArray());
+                labels.Add(columns.Key);
             }
 
             List<string> days = new List<string>();
@@ -48,6 +50,7 @@ namespace Wikiled.Google.Chart.Helpers
                 }
             }
 
+            chart.SetLegend(labels.ToArray());
             chart.AddAxis(new ChartAxis(ChartAxisType.Bottom, days.ToArray()));
             chart.SetData(values);
             chart.SetAutoColors();
