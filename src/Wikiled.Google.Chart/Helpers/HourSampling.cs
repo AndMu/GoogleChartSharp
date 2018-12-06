@@ -13,5 +13,10 @@ namespace Wikiled.Google.Chart.Helpers
         {
             return TimeSpan.FromHours(1);
         }
+
+        public DateTime GroupByDate(DateTime date)
+        {
+            return date.AddSeconds(-date.Second).AddMilliseconds(-date.Millisecond);
+        }
     }
 }

@@ -7,5 +7,7 @@ namespace Wikiled.Google.Chart.Helpers
         string GetName(DateTime date);
 
         TimeSpan GetStep();
+
+        DateTime GroupByDate(DateTime date);
     }
 }

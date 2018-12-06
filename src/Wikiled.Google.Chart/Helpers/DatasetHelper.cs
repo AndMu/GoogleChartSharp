@@ -56,7 +56,7 @@ namespace Wikiled.Google.Chart.Helpers
         private Series<DateTime, float> GetSeries(DataPoint[] points)
         {
             SeriesBuilder<DateTime, float> seriesBuilder = new SeriesBuilder<DateTime, float>();
-            foreach (IGrouping<DateTime, DataPoint> point in points.GroupBy(item => item.Date))
+            foreach (IGrouping<DateTime, DataPoint> point in points.GroupBy(item => sampling.GroupByDate(item.Date)))
             {
                 seriesBuilder.Add(point.Key, point.Average(item => item.Value));
             }
