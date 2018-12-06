@@ -359,6 +359,7 @@ namespace Wikiled.Google.Chart
         /// <param name="labels">legend labels</param>
         public virtual IChart SetLegend(string[] labels)
         {
+            legendStrings.Clear();
             foreach (var label in labels)
             {
                 legendStrings.Add(label);
