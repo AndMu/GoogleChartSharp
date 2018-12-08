@@ -9,26 +9,17 @@ namespace Wikiled.Google.Chart
     public class ChartAxis
     {
         private readonly List<ChartAxisLabel> axisLabels = new List<ChartAxisLabel>();
-        private readonly ChartAxisType axisType;
-        private int lowerBound;
-        private bool rangeSet;
-        private int upperBound;
 
-        /// <summary>
-        ///     Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
-        /// </summary>
-        /// <param name="axisType">Axis position</param>
-        public ChartAxis(ChartAxisType axisType)
-            : this(axisType, null)
-        {
-        }
+        private readonly ChartAxisType axisType;
+
+        private bool rangeSet;
 
         /// <summary>
         ///     Create an axis, default is range 0 - 100 evenly spaced. You can create multiple axes of the same ChartAxisType.
         /// </summary>
         /// <param name="axisType">Axis position</param>
         /// <param name="labels">These labels will be added to the axis without position information</param>
-        public ChartAxis(ChartAxisType axisType, string[] labels)
+        public ChartAxis(ChartAxisType axisType, string[] labels = null)
         {
             this.axisType = axisType;
 
@@ -40,6 +31,10 @@ namespace Wikiled.Google.Chart
                 }
             }
         }
+
+        public int LowerBound { get; private set; }
+
+        public int UpperBound { get; private set; }
 
         /// <summary>
         ///     an RRGGBB format hexadecimal number
@@ -63,8 +58,8 @@ namespace Wikiled.Google.Chart
         /// <param name="upperBound">the highest value on the axis</param>
         public ChartAxis SetRange(int lowerBound, int upperBound)
         {
-            this.lowerBound = lowerBound;
-            this.upperBound = upperBound;
+            LowerBound = lowerBound;
+            UpperBound = upperBound;
             rangeSet = true;
             return this;
         }
@@ -162,7 +157,7 @@ namespace Wikiled.Google.Chart
         {
             if (rangeSet)
             {
-                return lowerBound + "," + upperBound;
+                return LowerBound + "," + UpperBound;
             }
 
             return null;

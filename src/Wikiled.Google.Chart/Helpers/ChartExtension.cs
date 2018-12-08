@@ -59,5 +59,15 @@ namespace Wikiled.Google.Chart.Helpers
 
             return chart;
         }
+
+        public static IChart AdjustYScale(this IChart chart, int max = 2)
+        {
+            chart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, Colors.Black, 0.499, 0.501));
+            var minValue = Math.Max(chart.LowerBound, -max);
+            var maxValue = Math.Min(chart.UpperBound, max);
+            var range = (int)Math.Ceiling(Math.Max(Math.Abs(maxValue), Math.Abs(minValue)));
+            chart.AddAxis(new ChartAxis(ChartAxisType.Left).SetRange(-range, range));
+            return chart;
+        }
     }
 }

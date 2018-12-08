@@ -13,6 +13,10 @@ namespace Wikiled.Google.Chart
 
         int TotalSeries { get; }
 
+        float UpperBound { get; }
+
+        float LowerBound { get; }
+
         IChart AddAxis(ChartAxis axis);
 
         IChart AddFillArea(FillArea fillArea);

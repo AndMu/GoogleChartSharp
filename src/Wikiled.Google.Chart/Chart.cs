@@ -56,6 +56,10 @@ namespace Wikiled.Google.Chart
 
         public int TotalSeries { get; private set; }
 
+        public float UpperBound { get; private set; }
+
+        public float LowerBound { get; private set; }
+
         public int TotalPoints { get; private set; }
 
         /// <summary>
@@ -85,6 +89,8 @@ namespace Wikiled.Google.Chart
             }
 
             TotalPoints = data.Length;
+            UpperBound = data.Max();
+            LowerBound = data.Min();
             this.data = ChartData.Encode(data);
             TotalSeries = 1;
             return this;
@@ -106,6 +112,8 @@ namespace Wikiled.Google.Chart
                 throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
             }
 
+            UpperBound = data.SelectMany(item => item).Max();
+            LowerBound = data.SelectMany(item => item).Min();
             TotalPoints = data.First().Length;
             this.data = ChartData.Encode(data);
             TotalSeries = data.Count;
@@ -128,6 +136,8 @@ namespace Wikiled.Google.Chart
                 throw new ArgumentException("Value cannot be an empty collection.", nameof(data));
             }
 
+            UpperBound = data.Max();
+            LowerBound = data.Min();
             TotalPoints = data.Length;
             this.data = ChartData.Encode(data);
             TotalSeries = 1;
@@ -151,6 +161,8 @@ namespace Wikiled.Google.Chart
             }
 
             TotalPoints = data.First().Length;
+            UpperBound = data.SelectMany(item => item).Max();
+            LowerBound = data.SelectMany(item => item).Min();
             this.data = ChartData.Encode(data);
             TotalSeries = data.Count;
             return this;
@@ -195,6 +207,8 @@ namespace Wikiled.Google.Chart
             }
 
             TotalPoints = data.First().Length;
+            UpperBound = data.SelectMany(item => item).Max();
+            LowerBound = data.SelectMany(item => item).Min();
             this.data = ChartData.Encode(data);
             TotalSeries = data.Count;
             return this;
