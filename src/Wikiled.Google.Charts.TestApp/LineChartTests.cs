@@ -96,7 +96,7 @@ namespace Wikiled.Google.Charts.TestApp
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Bottom));
             lineChart.AddAxis(new ChartAxis(ChartAxisType.Left));
 
-            lineChart.AddLineStyle(new LineStyle(2, 5, 1));
+            lineChart.AddLineStyle(new LineStyle(20, 0, 0));
             lineChart.AddLineStyle(new LineStyle(1, 1, 5));
 
             return lineChart.GetUrl();

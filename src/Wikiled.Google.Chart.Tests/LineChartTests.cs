@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Moq;
 using NUnit.Framework;
-using Wikiled.Google.Chart;
 
 namespace Wikiled.Google.Chart.Tests
 {
@@ -30,7 +27,7 @@ namespace Wikiled.Google.Chart.Tests
             Assert.AreEqual(1, instance.LowerBound);
             Assert.AreEqual(1, instance.UpperBound);
 
-            instance.SetData(new[] { 1l });
+            instance.SetData(new[] { 1L });
             Assert.AreEqual(1, instance.TotalSeries);
             Assert.AreEqual(1, instance.LowerBound);
             Assert.AreEqual(1, instance.UpperBound);
@@ -52,8 +49,8 @@ namespace Wikiled.Google.Chart.Tests
             Assert.AreEqual(2, instance.UpperBound);
 
             var listl = new List<long[]>();
-            listl.Add(new[] { 1l });
-            listl.Add(new[] { 2l });
+            listl.Add(new[] { 1L });
+            listl.Add(new[] { 2L });
             instance.SetData(listl);
             Assert.AreEqual(1, instance.LowerBound);
             Assert.AreEqual(2, instance.UpperBound);
