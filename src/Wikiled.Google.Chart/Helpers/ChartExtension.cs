@@ -80,7 +80,7 @@ namespace Wikiled.Google.Chart.Helpers
             for (int i = 0; i < series.XAxis.Length; i++)
             {
                 var current = series.XAxis[i];
-                if (labelSampling != null &&
+                if (labelSampling == null ||
                     labelSampling(current, i))
                 {
                     days.Add(series.Sampling.GetName(current));
