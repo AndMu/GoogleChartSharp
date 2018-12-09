@@ -49,7 +49,8 @@ namespace Wikiled.Google.Chart.Helpers
             emptySeries = emptySeries.Sample(Sampling.GetStep());
             emptySeries = emptySeries.EndAt(frame.RowIndex.KeyAt(frame.RowIndex.KeyCount - 1));
             frameBuilder.Add("NULL", emptySeries);
-            frame = frameBuilder.Frame.FillMissing(Direction.Forward);
+            frame = frameBuilder.Frame;
+            frame = frame.FillMissing(Direction.Forward).FillMissing(Direction.Backward).FillMissing(0f);
             frame.DropColumn("NULL");
 
             List<float[]> values = new List<float[]>();
