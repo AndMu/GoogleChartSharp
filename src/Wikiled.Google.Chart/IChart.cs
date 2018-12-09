@@ -9,13 +9,7 @@ namespace Wikiled.Google.Chart
 
         int Width { get; set; }
 
-        int TotalPoints { get; }
-
         int TotalSeries { get; }
-
-        float UpperBound { get; }
-
-        float LowerBound { get; }
 
         IChart AddAxis(ChartAxis axis);
 

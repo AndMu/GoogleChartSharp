@@ -1,20 +1,28 @@
-﻿using Deedle;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using Deedle;
 
 namespace Wikiled.Google.Chart.Helpers
 {
-    public class DatasetHelper
+    public class TimeSeries : ITimeSeries
     {
         private readonly FrameBuilder.Columns<DateTime, string> frameBuilder = new FrameBuilder.Columns<DateTime, string>();
 
-        private readonly ISampling sampling;
-
-        public DatasetHelper(ISampling sampling)
+        public TimeSeries(ISampling sampling)
         {
-            this.sampling = sampling ?? throw new ArgumentNullException(nameof(sampling));
+            Sampling = sampling ?? throw new ArgumentNullException(nameof(sampling));
         }
+        public ISampling Sampling { get; }
+
+        public bool IsGenerated { get; private set; }
+
+        public DateTime[] XAxis { get; private set; }
+
+        public string[] SeriesNames { get; private set; }
+
+        public IList<float[]> Points { get; private set; }
 
         public void AddSeries(string name, DataPoint[] points)
         {
@@ -22,16 +30,28 @@ namespace Wikiled.Google.Chart.Helpers
             frameBuilder.Add(name, newColumn);
         }
 
-        public void Populate(IChart chart, Func<DateTime, int, bool> labelSampling = null)
+        public void Rescale(Func<float, float> scale)
         {
+            Points = new ReadOnlyCollection<float[]>(Points.Select(item => item.Select(scale).ToArray()).ToList());
+        }
+
+        public void Generate()
+        {
+            if (IsGenerated)
+            {
+                return;
+            }
+
+            IsGenerated = true;
             Frame<DateTime, string> frame = frameBuilder.Frame.FillMissing(0f);
             Series<DateTime, float> emptySeries = frame.GetColumnAt<float>(0).Observations.Select(item => new KeyValuePair<DateTime, float>(item.Key, 0)).ToSeries();
 
-            emptySeries = emptySeries.Sample(sampling.GetStep());
+            emptySeries = emptySeries.Sample(Sampling.GetStep());
             emptySeries = emptySeries.EndAt(frame.RowIndex.KeyAt(frame.RowIndex.KeyCount - 1));
             frameBuilder.Add("NULL", emptySeries);
             frame = frameBuilder.Frame.FillMissing(0f);
             frame.DropColumn("NULL");
+
             List<float[]> values = new List<float[]>();
             List<string> labels = new List<string>();
             foreach (KeyValuePair<string, Series<DateTime, float>> columns in frame.GetAllColumns<float>())
@@ -40,26 +60,15 @@ namespace Wikiled.Google.Chart.Helpers
                 labels.Add(columns.Key);
             }
 
-            List<string> days = new List<string>();
-            for (int i = 0; i < frame.RowIndex.Keys.Count; i++)
-            {
-                if (labelSampling == null ||
-                    labelSampling(frame.RowIndex.Keys[i], i))
-                {
-                    days.Add(sampling.GetName(frame.RowIndex.Keys[i]));
-                }
-            }
-
-            chart.SetLegend(labels.ToArray());
-            chart.AddAxis(new ChartAxis(ChartAxisType.Bottom, days.ToArray()));
-            chart.SetData(values);
-            chart.SetAutoColors();
+            Points = values.AsReadOnly();
+            SeriesNames = labels.ToArray();
+            XAxis = frame.RowIndex.Keys.ToArray();
         }
 
         private Series<DateTime, float> GetSeries(DataPoint[] points)
         {
             SeriesBuilder<DateTime, float> seriesBuilder = new SeriesBuilder<DateTime, float>();
-            foreach (IGrouping<DateTime, DataPoint> point in points.GroupBy(item => sampling.GroupByDate(item.Date)))
+            foreach (IGrouping<DateTime, DataPoint> point in points.GroupBy(item => Sampling.GroupByDate(item.Date)))
             {
                 seriesBuilder.Add(point.Key, point.Average(item => item.Value));
             }

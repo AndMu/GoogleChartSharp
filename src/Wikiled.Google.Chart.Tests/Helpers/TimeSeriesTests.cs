@@ -5,18 +5,15 @@ using Wikiled.Google.Chart.Helpers;
 namespace Wikiled.Google.Chart.Tests.Helpers
 {
     [TestFixture]
-    public class DatasetHelperTests
+    public class TimeSeriesTests
     {
         private DataPoint[] firstData;
 
         private DataPoint[] secondData;
 
-        private LineChart chart;
-
         [SetUp]
         public void Setup()
         {
-            chart = new LineChart(10, 10);
             firstData = new[]
             {
                 new DataPoint { Date = new DateTime(2012, 02, 23), Value = 2 },
@@ -34,23 +31,27 @@ namespace Wikiled.Google.Chart.Tests.Helpers
         [Test]
         public void TestDay()
         {
-            var instance = new DatasetHelper(new DayOfWeekSampling());
+            var instance = new TimeSeries(new DayOfWeekSampling());
             instance.AddSeries("One", firstData);
             instance.AddSeries("Two", secondData);
-            instance.Populate(chart);
-            Assert.AreEqual(2, chart.TotalSeries);
-            Assert.AreEqual(5, chart.TotalPoints);
+            Assert.IsFalse(instance.IsGenerated);
+            instance.Generate();
+            Assert.IsTrue(instance.IsGenerated);
+            Assert.AreEqual(2, instance.SeriesNames.Length);
+            Assert.AreEqual(5, instance.Points[0].Length);
         }
 
         [Test]
         public void TestHour()
         {
-            var instance = new DatasetHelper(new HourSampling());
+            var instance = new TimeSeries(new HourSampling());
             instance.AddSeries("One", firstData);
             instance.AddSeries("Two", secondData);
-            instance.Populate(chart);
-            Assert.AreEqual(2, chart.TotalSeries);
-            Assert.AreEqual(97, chart.TotalPoints);
+            Assert.IsFalse(instance.IsGenerated);
+            instance.Generate();
+            Assert.IsTrue(instance.IsGenerated);
+            Assert.AreEqual(2, instance.SeriesNames.Length);
+            Assert.AreEqual(97, instance.Points[0].Length);
         }
     }
 }

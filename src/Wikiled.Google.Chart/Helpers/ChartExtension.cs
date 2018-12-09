@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Wikiled.Google.Chart.Helpers
@@ -60,13 +61,36 @@ namespace Wikiled.Google.Chart.Helpers
             return chart;
         }
 
-        public static IChart AdjustYScale(this IChart chart, int max = 2)
+        public static IChart AdjustYScaleZero(this IChart chart, float max = 1, float step = 0.1f)
         {
             chart.AddRangeMarker(new RangeMarker(RangeMarkerType.Horizontal, Colors.Black, 0.499, 0.501));
-            var minValue = Math.Max(chart.LowerBound, -max);
-            var maxValue = Math.Min(chart.UpperBound, max);
-            var range = (int)Math.Ceiling(Math.Max(Math.Abs(maxValue), Math.Abs(minValue)));
-            chart.AddAxis(new ChartAxis(ChartAxisType.Left).SetRange(-range, range));
+            List<string> labels = new List<string>();
+            for (var i = -max; i < max; i += step)
+            {
+                labels.Add(Math.Round(i, 2).ToString());
+            }
+
+            chart.AddAxis(new ChartAxis(ChartAxisType.Left, labels.ToArray()));
+            return chart;
+        }
+
+        public static IChart Populate(this IChart chart, ITimeSeries series, Func<DateTime, int, bool> labelSampling = null)
+        {
+            List<string> days = new List<string>();
+            for (int i = 0; i < series.XAxis.Length; i++)
+            {
+                var current = series.XAxis[i];
+                if (labelSampling != null &&
+                    labelSampling(current, i))
+                {
+                    days.Add(series.Sampling.GetName(current));
+                }
+            }
+
+            chart.SetLegend(series.SeriesNames);
+            chart.AddAxis(new ChartAxis(ChartAxisType.Bottom, days.ToArray()));
+            chart.SetData(series.Points);
+            chart.SetAutoColors();
             return chart;
         }
     }

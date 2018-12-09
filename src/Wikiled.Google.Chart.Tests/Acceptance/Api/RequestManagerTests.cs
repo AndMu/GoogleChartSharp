@@ -70,10 +70,11 @@ namespace Wikiled.Google.Chart.Tests.Acceptance.Api
                              new DataPoint { Date = new DateTime(2012, 02, 25), Value = 48 }
                          };
 
-            var dataSet = new DatasetHelper(new HourSampling());
+            var dataSet = new TimeSeries(new HourSampling());
             dataSet.AddSeries("One", firstData);
             dataSet.AddSeries("Two", secondData);
-            dataSet.Populate(chart, (date, i) => i % 5 == 0);
+            dataSet.Generate();
+            chart.Populate(dataSet, (date, i) => i % 5 == 0);
 
             var data = await instance.GetImage(chart);
             Assert.Greater(data.Length, 5000);
