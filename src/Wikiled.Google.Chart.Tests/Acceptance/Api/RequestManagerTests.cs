@@ -77,7 +77,7 @@ namespace Wikiled.Google.Chart.Tests.Acceptance.Api
             chart.Populate(dataSet, (date, i) => i % 5 == 0);
 
             var data = await instance.GetImage(chart);
-            Assert.Greater(data.Length, 5000);
+            Assert.Greater(data.Length, 1000);
             File.WriteAllBytes(Path.Combine(TestContext.CurrentContext.TestDirectory, "image.jpg"), data);
         }
 
